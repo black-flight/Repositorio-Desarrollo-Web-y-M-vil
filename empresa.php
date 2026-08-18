@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title>Página Principal</title>
+        <title>Empresa</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -10,7 +10,7 @@
         <!==Navbar==>
         <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
             <div class="container-fluid">
-                <a class="navbar-brand" href="index.php">Logo</a>
+                <a class="navbar-brand" href="index.php">Mi Empresa</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -41,9 +41,45 @@
 
         <!==Container==>
     
-        <div class="container-fluid bg-warning">
+        <div class="container-fluid bg-warning p-4">
+
+            <h1>Quienes somos</h1>
+
+            <p>
+                Mi Empresa es una organización dedicada a entregar productos y servicios
+                pensados para las necesidades de nuestros clientes.
+            </p>
+
+            <p>
+                Buscamos mantener una relación cercana con quienes trabajan con nosotros,
+                entregando soluciones simples, confiables y de buena calidad.
+            </p>
+
+            <h4>Nuestra misión</h4>
+
+            <p>
+                Nuestra misión es entregar servicios y productos que permitan mejorar
+                la experiencia de nuestros clientes y ayudar al crecimiento de sus proyectos.
+            </p>
+
+            <h4>Nuestra visión</h4>
+
+            <p>
+                Queremos seguir creciendo como empresa y llegar a nuevos mercados,
+                manteniendo siempre un buen servicio y una relación de confianza con nuestros clientes.
+            </p>
+
+            <h4>Nuestro equipo</h4>
+
+            <p>
+                Contamos con un equipo de personas de distintas áreas que trabajan
+                en conjunto para cumplir con los objetivos de la empresa.
+            </p>
+
             <a href="index.php">Volver</a>
+
         </div>
+
         <!==Footer==>
         <div class="container-fuid bg-dark">
             <div class="row">

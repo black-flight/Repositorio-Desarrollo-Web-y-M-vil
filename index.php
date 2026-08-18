@@ -10,7 +10,7 @@
         <!==Navbar==>
         <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
             <div class="container-fluid">
-                <a class="navbar-brand" href="index.php">Logo</a>
+                <a class="navbar-brand" href="index.php">Mi Empresa</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -44,12 +44,36 @@
 
         <!==Container==>
     
-        <div class="container-fluid bg-warning">
+        <div class="container-fluid bg-warning p-4">
+
+            <h1>Bienvenido a Mi Empresa</h1>
+
+            <p>
+                Somos una empresa dedicada a entregar productos y servicios
+                para diferentes tipos de clientes.
+            </p>
+
+            <p>
+                Nuestro objetivo es entregar soluciones de calidad y seguir
+                creciendo junto a nuestros clientes.
+            </p>
+
+            <h4>Conoce más sobre nosotros</h4>
+
             <a href="empresa.php">Ir a Empresa</a><br>
             <a href="servicios.php"> Ir a Servicios </a><br>
             <a href="productos.php">Ir a Productos</a><br>
             <a href="contacto.php"> Ir a Contacto</a><br>
+
+            <br>
+
+            <p>
+                Puedes revisar nuestros servicios, conocer nuestros productos
+                o comunicarte con nosotros mediante la sección de contacto.
+            </p>
+
         </div>
+
         <!==Footer==>
         <div class="container-fuid bg-dark">
             <div class="row">
@@ -58,6 +82,7 @@
                 <div class="col-4"></div>
             </div>
         </div>
+
         <!==Modal==>
         <div class="modal fade" id="myModal">
             <div class="modal-dialog">
