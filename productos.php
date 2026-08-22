@@ -4,9 +4,33 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>     
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+        <script>
+            const responseAPI ={
+                "status": 200,
+                "message": "Productos Obtenidos",
+                "data": [
+                    {"id":"1","nombre":"Producto Empresarial"},
+                    {"id":"2","nombre":"Producto Profesional"},
+                    {"id":"3","nombre":"Producto Personal"},
+                    {"id":"4","nombre":"Soluciones personalizadas"}
+                ]
+            };
+
+            function cargarProductos(){
+                let cmb = document.getElementById("cmbProducto");
+
+                responseAPI.data.forEach((prod) =>{
+                    let opt = document.createElement("option");
+                    opt.setAttribute("value", prod.id);
+                    opt.innerText = prod.nombre;
+                    cmb.appendChild(opt);
+
+                });
+            }
+        </script>     
     </head>
-    <body>
+    <body onload="cargarProductos();">
         <!==Navbar==>
         <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
             <div class="container-fluid">
@@ -54,6 +78,15 @@
                 Buscamos ofrecer alternativas de buena calidad que puedan
                 adaptarse a diferentes necesidades.
             </p>
+
+            <h4>Lineas de productos</h4>
+            <p>
+                Puedes revisar algunas de las principales lineas de productos que actualmente ofrece Mi Empresa.
+            </p>
+            
+            <div>
+                <select id="cmbProducto" name="cmbProducto"></select>
+            </div>
 
             <h4>Producto Empresarial</h4>
 
