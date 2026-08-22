@@ -18,6 +18,7 @@
             };
 
             function cargarProductos(){
+                console.log("Tipo de responseAPI;", typeof responseAPI);
                 let cmb = document.getElementById("cmbProducto");
 
                 responseAPI.data.forEach((prod) =>{
