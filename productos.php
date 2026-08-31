@@ -26,7 +26,6 @@
                     opt.setAttribute("value", prod.id);
                     opt.innerText = prod.nombre;
                     cmb.appendChild(opt);
-
                 });
             }
         </script>     
