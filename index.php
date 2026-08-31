@@ -44,7 +44,7 @@
 
         <!==Container==>
     
-        <div class="container-fluid bg-warning p-4">
+        <div class="container-fluid bg-secondary p-4">
 
             <h1>Bienvenido a Mi Empresa</h1>
 
