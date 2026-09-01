@@ -1,0 +1,25 @@
+body {
+    background-color: #f2f2f2;
+}
+
+.titulo-principal {
+    color: #7a0019;
+}
+
+#inicio {
+    background-color: #f7f3ee;
+    border: 1px solid #cccccc;
+}
+
+#inicio p {
+    color: #333333;
+}
+
+#inicio a {
+    color: #7a0019;
+    text-decoration: none;
+}
+
+#inicio a:hover {
+    color: #b3263f;
+}

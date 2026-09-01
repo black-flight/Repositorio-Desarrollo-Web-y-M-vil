@@ -4,6 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="estilos.css" rel="stylesheet">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>     
     </head>
     <body>
@@ -44,9 +45,9 @@
 
         <!==Container==>
     
-        <div class="container-fluid bg-secondary p-4">
+        <div class="container-fluid p-4" id="inicio">
 
-            <h1>Bienvenido a Mi Empresa</h1>
+            <h1 class="titulo-principal">Bienvenido a Mi Empresa</h1>
 
             <p>
                 Somos una empresa dedicada a entregar productos y servicios
