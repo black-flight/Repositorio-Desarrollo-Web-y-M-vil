@@ -45,7 +45,7 @@
 
         <!==Container==>
     
-        <div class="container-fluid p-4" id="inicio">
+        <div class="container-fluid" id="inicio">
 
             <h1 class="titulo-principal">Bienvenido a Mi Empresa</h1>
 
