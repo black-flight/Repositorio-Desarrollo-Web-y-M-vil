@@ -50,8 +50,9 @@
             <h1 class="titulo-principal">Bienvenido a Mi Empresa</h1>
 
             <p>
-                Somos una empresa dedicada a entregar productos y servicios
-                para diferentes tipos de clientes.
+                En Mi Empresa contamos con distintos servicios pensados para
+                ayudar a nuestros clientes y entregar soluciones de acuerdo
+                a sus necesidades.
             </p>
 
             <p>
