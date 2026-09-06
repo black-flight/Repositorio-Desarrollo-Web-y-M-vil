@@ -1,0 +1,21 @@
+.titulo-principal {
+    color: #7a0019;
+}
+
+#inicio {
+    border: 1px solid #cccccc;
+    padding: 10px;
+}
+
+#inicio p {
+    color: #333333;
+}
+
+#inicio a {
+    color: #7a0019;
+    text-decoration: none;
+}
+
+#inicio a:hover {
+    color: #b3263f;
+}
