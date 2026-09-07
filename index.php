@@ -11,7 +11,7 @@
         <!==Navbar==>
         <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
             <div class="container-fluid">
-                <a class="navbar-brand" href="index.php">Mi Empresa</a>
+                <a class="navbar-brand" href="index.php">Tokyo Noodles</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -47,7 +47,7 @@
     
         <div class="container-fluid" id="inicio">
 
-            <h1 class="titulo-principal">Bienvenido a Mi Empresa</h1>
+            <h1 class="titulo-principal">Bienvenido a Tokyo Noodles</h1>
 
             <p>
                 En Mi Empresa contamos con distintos servicios pensados para
@@ -80,7 +80,7 @@
         <div class="container-fuid bg-dark">
             <div class="row">
                 <div class="col-4"></div>
-                <div class="col-4" style="color:white"><strong>MiEmpresa@2026</strong></div>
+                <div class="col-4" style="color:white"><strong>TokyoNoodles@2026</strong></div>
                 <div class="col-4"></div>
             </div>
         </div>
