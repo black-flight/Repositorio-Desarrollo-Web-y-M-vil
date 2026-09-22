@@ -7,8 +7,16 @@
 
     <meta charset="utf-8">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1"
+    >
+
+    <link
+        rel="icon"
+        type="image/png"
+        href="img/favicon.png"
+    >
 
     <link
         href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
@@ -24,21 +32,29 @@
         src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js">
     </script>
 
+    <script src="productos.js"></script>
+
 </head>
 
 
-<body>
+<body onload="actualizarContadorCarrito();">
 
-
-<!-- NAVBAR -->
 
 <nav class="navbar navbar-expand-md navbar-dark tn-navbar">
 
     <div class="container-fluid">
 
-        <a class="navbar-brand me-5"
-           href="index.php">
-            LOGO
+        <a
+            class="navbar-brand me-5"
+            href="index.php"
+        >
+
+            <img
+                src="img/logo.png"
+                alt="Tokyo Noodles"
+                class="logo-navbar"
+            >
+
         </a>
 
 
@@ -48,34 +64,52 @@
             data-bs-toggle="collapse"
             data-bs-target="#navbarTokyo"
         >
+
             <span class="navbar-toggler-icon"></span>
+
         </button>
 
 
-        <div class="collapse navbar-collapse"
-             id="navbarTokyo">
+        <div
+            class="collapse navbar-collapse"
+            id="navbarTokyo"
+        >
 
             <ul class="navbar-nav me-auto">
 
                 <li class="nav-item">
-                    <a class="nav-link nav-activo px-4"
-                       href="index.php">
+
+                    <a
+                        class="nav-link nav-activo px-4"
+                        href="index.php"
+                    >
                         Inicio
                     </a>
+
                 </li>
 
+
                 <li class="nav-item">
-                    <a class="nav-link px-4"
-                       href="menu.php">
+
+                    <a
+                        class="nav-link px-4"
+                        href="menu.php"
+                    >
                         Menú
                     </a>
+
                 </li>
 
+
                 <li class="nav-item">
-                    <a class="nav-link px-4"
-                       href="promociones.php">
+
+                    <a
+                        class="nav-link px-4"
+                        href="promociones.php"
+                    >
                         Promociones
                     </a>
+
                 </li>
 
             </ul>
@@ -83,18 +117,29 @@
 
             <div class="d-flex flex-column flex-md-row gap-3 align-items-md-center">
 
-                <a class="nav-link"
-                   href="#">
-                    Buscar
+                <button
+                    class="btn nav-link"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#buscadorTokyo"
+                >
+                    🔍 Buscar
+                </button>
+
+
+                <a
+                    class="nav-link"
+                    href="carrito.php"
+                >
+                    🛒 Carrito
+                    (<span id="contador-carrito">0</span>)
                 </a>
 
-                <a class="nav-link"
-                   href="carrito.php">
-                    Carrito
-                </a>
 
-                <a class="nav-link"
-                   href="login.php">
+                <a
+                    class="nav-link"
+                    href="login.php"
+                >
                     Usuario
                 </a>
 
@@ -107,7 +152,23 @@
 </nav>
 
 
-<!-- PORTADA -->
+<div
+    class="collapse"
+    id="buscadorTokyo"
+>
+
+    <div class="container-fluid buscador-tokyo p-3">
+
+        <input
+            type="text"
+            class="form-control"
+            placeholder="Buscar ramen, bebidas o promociones..."
+        >
+
+    </div>
+
+</div>
+
 
 <div class="container-fluid">
 
@@ -119,8 +180,12 @@
                 ¿PREPARADO PARA VIAJAR A TRAVÉS DEL SABOR?
             </h1>
 
+
             <p class="mt-4">
-                Descubre sabores únicos inspirados en la esencia de Japón
+
+                Descubre sabores únicos inspirados
+                en la esencia de Japón
+
             </p>
 
         </section>
@@ -139,8 +204,6 @@
 </div>
 
 
-<!-- FOOTER -->
-
 <footer class="container-fluid footer-tokyo">
 
     <div class="row g-4 text-center text-md-start">
@@ -151,14 +214,21 @@
                 CONÓCENOS
             </h4>
 
-            <p>
-                Tokyo Noodles nació con una idea simple:
-                traer un pedacito de Tokio a tu mesa.
-            </p>
 
             <p>
-                Mezclamos tradición japonesa, sabores únicos
-                y ramen hecho con personalidad.
+
+                Tokyo Noodles nació con una idea simple:
+                traer un pedacito de Tokio a tu mesa.
+
+            </p>
+
+
+            <p>
+
+                Mezclamos tradición japonesa,
+                sabores únicos y ramen hecho
+                con personalidad.
+
             </p>
 
         </div>
@@ -171,8 +241,11 @@
             </h4>
 
             <p>Whatsapp</p>
+
             <p>Instagram</p>
+
             <p>Facebook</p>
+
             <p>TikTok</p>
 
         </div>
@@ -180,9 +253,11 @@
 
         <div class="col-12 col-sm-6 col-lg text-center">
 
-            <span class="footer-logo">
-                LOGO
-            </span>
+            <img
+                src="img/logo.png"
+                alt="Tokyo Noodles"
+                class="logo-footer"
+            >
 
         </div>
 
@@ -194,13 +269,20 @@
             </h4>
 
             <p>
-                Lunes - Martes<br>
+
+                Lunes - Martes
+                <br>
                 12:00 - 01:00
+
             </p>
 
+
             <p>
-                Miércoles - Sábado<br>
+
+                Miércoles - Sábado
+                <br>
                 12:00 - 02:00
+
             </p>
 
         </div>

@@ -1,56 +1,94 @@
 body {
     margin: 0;
-    background-color: #000000;
+    background: #000;
     color: #e6cbb5;
     font-family: Georgia, "Times New Roman", serif;
 }
 
 
-/* NAVBAR */
-
 .tn-navbar {
-    background-color: #5b3415;
+    background: #5b3415;
 }
+
 
 .tn-navbar .navbar-brand,
 .tn-navbar .nav-link {
     color: white;
 }
 
+
 .tn-navbar .nav-link:hover {
     color: #f5b052;
 }
 
+
 .nav-activo {
-    background-color: #865026;
+    background: #865026;
 }
 
 
-/* BOTONES */
-
 .btn-tokyo {
-    background-color: #865026;
+    background: #865026;
     color: white;
     border: none;
 }
 
+
 .btn-tokyo:hover {
-    background-color: #da8442;
+    background: #da8442;
     color: white;
 }
 
+
 .btn-dorado {
-    background-color: #dfb663;
+    background: #dfb663;
     color: #292727;
     border: none;
 }
 
+
 .btn-dorado:hover {
-    background-color: #f5b052;
+    background: #f5b052;
 }
 
 
-/* INICIO */
+.logo-navbar {
+    height: 55px;
+    width: auto;
+    max-width: 210px;
+}
+
+
+.logo-footer {
+    width: 180px;
+    max-width: 100%;
+    height: auto;
+}
+
+
+.buscador-tokyo {
+    background: #292727;
+}
+
+
+.buscador-tokyo input {
+    background: #000;
+    color: white;
+    border: 2px solid #dfb663;
+}
+
+
+.buscador-tokyo input:focus {
+    background: #000;
+    color: white;
+    border-color: #f5b052;
+}
+
+
+.buscador-tokyo input::placeholder {
+    color: #848181;
+}
+
 
 .hero-texto {
     min-height: 610px;
@@ -62,16 +100,19 @@ body {
     padding: 40px;
 }
 
+
 .hero-texto h1 {
     font-size: 3rem;
     max-width: 800px;
 }
+
 
 .hero-texto p {
     color: #848181;
     font-size: 1.3rem;
     font-style: italic;
 }
+
 
 .hero-imagen {
     min-height: 610px;
@@ -83,6 +124,7 @@ body {
     align-items: center;
 }
 
+
 .hero-imagen a {
     color: white;
     font-size: 2.7rem;
@@ -90,31 +132,34 @@ body {
     text-decoration: none;
 }
 
+
 .hero-imagen a:hover {
     color: #f5b052;
 }
 
 
-/* FOOTER */
-
 .footer-tokyo {
-    background-color: #292727;
+    background: #292727;
     padding: 35px 20px;
 }
+
 
 .footer-tokyo h4 {
     color: #865026;
     font-weight: bold;
 }
 
+
 .footer-tokyo a {
     color: #e6cbb5;
     text-decoration: none;
 }
 
+
 .footer-tokyo a:hover {
     color: #f5b052;
 }
+
 
 .footer-logo {
     color: white;
@@ -123,8 +168,6 @@ body {
 }
 
 
-/* MENÚ */
-
 .titulo-seccion {
     color: #e6cbb5;
     text-align: center;
@@ -132,12 +175,14 @@ body {
     font-weight: bold;
 }
 
+
 .tarjeta-producto {
-    background-color: #292727;
+    background: #292727;
     border-radius: 25px;
     padding: 15px;
     height: 100%;
 }
+
 
 .tarjeta-producto img {
     width: 100%;
@@ -146,15 +191,18 @@ body {
     border-radius: 15px;
 }
 
+
 .tarjeta-producto h3 {
     color: white;
     font-weight: bold;
 }
 
+
 .tarjeta-producto p {
     color: #e6cbb5;
     font-style: italic;
 }
+
 
 .precio {
     color: white;
@@ -163,19 +211,19 @@ body {
 }
 
 
-/* PROMOCIONES */
-
 .tarjeta-promocion {
-    background-color: #292727;
+    background: #292727;
     border-radius: 25px;
     padding: 20px;
     margin-bottom: 30px;
 }
 
+
 .tarjeta-promocion h2 {
     color: white;
     font-weight: bold;
 }
+
 
 .tarjeta-promocion p {
     color: #e6cbb5;
@@ -183,12 +231,14 @@ body {
     font-size: 1.1rem;
 }
 
+
 .imagen-promo {
     width: 100%;
     height: 190px;
     object-fit: cover;
     border-radius: 15px;
 }
+
 
 .imagen-bebida {
     width: 100%;
@@ -198,12 +248,11 @@ body {
 }
 
 
-/* CARRITO */
-
 .carrito-contenedor {
     max-width: 900px;
     margin: auto;
 }
+
 
 .titulo-carrito {
     color: #e6cbb5;
@@ -211,10 +260,12 @@ body {
     margin-bottom: 30px;
 }
 
+
 .carrito-producto {
     border-bottom: 2px solid #292727;
     padding: 25px 0;
 }
+
 
 .carrito-producto img {
     width: 140px;
@@ -223,22 +274,27 @@ body {
     border-radius: 10px;
 }
 
+
 .carrito-producto h3 {
     color: white;
 }
+
 
 .carrito-producto p {
     color: #848181;
     font-style: italic;
 }
 
+
 .cantidad {
-    background-color: #292727;
+    background: #292727;
     color: white;
     border-radius: 20px;
     padding: 6px 15px;
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
 }
+
 
 .subtotal {
     border-top: 2px solid #292727;
@@ -247,8 +303,9 @@ body {
     color: #e6cbb5;
 }
 
+
 .btn-continuar {
-    background-color: #865026;
+    background: #865026;
     color: white;
     border: none;
     border-radius: 20px;
@@ -256,88 +313,99 @@ body {
     font-size: 1.2rem;
 }
 
+
 .btn-continuar:hover {
-    background-color: #da8442;
+    background: #da8442;
     color: white;
 }
 
 
-/* MODAL */
-
 .modal-content {
-    background-color: #292727;
+    background: #292727;
     color: white;
     border-radius: 25px;
 }
 
+
 .opcion-pedido {
-    background-color: #3b3939;
+    background: #3b3939;
     border-radius: 15px;
     padding: 8px;
 }
 
+
 .direccion {
     border: 2px solid #848181;
-    background-color: transparent;
+    background: transparent;
     color: white;
     border-radius: 20px;
 }
+
 
 .direccion::placeholder {
     color: #e6cbb5;
 }
 
+
 .local-retiro {
-    background-color: #dfb663;
+    background: #dfb663;
     color: #292727;
     border-radius: 20px;
     padding: 15px;
 }
 
 
-/* LOGIN */
-
 .form-login {
     max-width: 900px;
     margin: auto;
 }
 
+
 .form-login input {
-    background-color: #000;
+    background: #000;
     border: 3px solid white;
     color: white;
     border-radius: 20px;
 }
 
+
 .form-login input:focus {
-    background-color: #000;
+    background: #000;
     color: white;
 }
 
 
-/* RESPONSIVIDAD */
-
-@media (max-width: 767px) {
+@media(max-width: 767px) {
 
     .hero-texto {
-        min-height: 400px;
-        padding: 30px 15px;
+        min-height: 420px;
     }
+
 
     .hero-texto h1 {
         font-size: 2rem;
     }
 
+
     .hero-imagen {
-        min-height: 400px;
+        min-height: 420px;
     }
+
 
     .hero-imagen a {
         font-size: 2rem;
     }
 
+
     .carrito-producto img {
-        width: 100px;
-        height: 90px;
+        width: 100%;
+        height: 110px;
     }
+
+
+    .logo-navbar {
+        height: 45px;
+        max-width: 170px;
+    }
+
 }
