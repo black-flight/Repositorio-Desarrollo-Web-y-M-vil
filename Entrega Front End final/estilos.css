@@ -1,0 +1,611 @@
+body {
+    margin: 0;
+    background: #000;
+    color: #e6cbb5;
+    font-family: Georgia, "Times New Roman", serif;
+}
+
+
+.tn-navbar {
+    background: #5b3415;
+}
+
+
+.tn-navbar .navbar-brand,
+.tn-navbar .nav-link {
+    color: white;
+}
+
+
+.tn-navbar .nav-link:hover {
+    color: #f5b052;
+}
+
+
+.nav-activo {
+    background: #865026;
+}
+
+
+.btn-tokyo {
+    background: #865026;
+    color: white;
+    border: none;
+}
+
+
+.btn-tokyo:hover {
+    background: #da8442;
+    color: white;
+}
+
+
+.btn-dorado {
+    background: #dfb663;
+    color: #292727;
+    border: none;
+}
+
+
+.btn-dorado:hover {
+    background: #f5b052;
+}
+
+
+.logo-navbar {
+    height: 55px;
+    width: auto;
+    max-width: 210px;
+}
+
+
+.logo-footer {
+    width: 180px;
+    max-width: 100%;
+    height: auto;
+}
+
+
+.buscador-tokyo {
+    background: #292727;
+}
+
+
+.buscador-tokyo input {
+    background: #000;
+    color: white;
+    border: 2px solid #dfb663;
+}
+
+
+.buscador-tokyo input:focus {
+    background: #000;
+    color: white;
+    border-color: #f5b052;
+}
+
+
+.buscador-tokyo input::placeholder {
+    color: #848181;
+}
+
+
+.hero-texto {
+    min-height: 610px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 40px;
+}
+
+
+.hero-texto h1 {
+    font-size: 3rem;
+    max-width: 800px;
+}
+
+
+.hero-texto p {
+    color: #848181;
+    font-size: 1.3rem;
+    font-style: italic;
+}
+
+
+.hero-imagen {
+    min-height: 610px;
+    background-image: url("img/portada.jpg");
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.hero-imagen a {
+    color: white;
+    font-size: 2.7rem;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+
+.hero-imagen a:hover {
+    color: #f5b052;
+}
+
+
+.footer-tokyo {
+    background: #292727;
+    padding: 35px 20px;
+}
+
+
+.footer-tokyo h4 {
+    color: #865026;
+    font-weight: bold;
+}
+
+
+.footer-tokyo a {
+    color: #e6cbb5;
+    text-decoration: none;
+}
+
+
+.footer-tokyo a:hover {
+    color: #f5b052;
+}
+
+
+.footer-logo {
+    color: white;
+    font-family: Arial, sans-serif;
+    font-size: 1.6rem;
+}
+
+
+.titulo-seccion {
+    color: #e6cbb5;
+    text-align: center;
+    margin: 40px 0;
+    font-weight: bold;
+}
+
+
+.tarjeta-producto {
+    background: #292727;
+    border-radius: 25px;
+    padding: 15px;
+    height: 100%;
+}
+
+
+.tarjeta-producto img {
+    width: 100%;
+    height: 190px;
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+
+.tarjeta-producto h3 {
+    color: white;
+    font-weight: bold;
+}
+
+
+.tarjeta-producto p {
+    color: #e6cbb5;
+    font-style: italic;
+}
+
+
+.precio {
+    color: white;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+
+.tarjeta-promocion {
+    background: #292727;
+    border-radius: 25px;
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+
+.tarjeta-promocion h2 {
+    color: white;
+    font-weight: bold;
+}
+
+
+.tarjeta-promocion p {
+    color: #e6cbb5;
+    font-style: italic;
+    font-size: 1.1rem;
+}
+
+
+.imagen-promo {
+    width: 100%;
+    height: 190px;
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+
+.imagen-bebida {
+    width: 100%;
+    height: 190px;
+    object-fit: contain;
+    border-radius: 15px;
+}
+
+
+.carrito-contenedor {
+    max-width: 900px;
+    margin: auto;
+}
+
+
+.titulo-carrito {
+    color: #e6cbb5;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+
+.carrito-producto {
+    border-bottom: 2px solid #292727;
+    padding: 25px 0;
+}
+
+
+.carrito-producto img {
+    width: 140px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+
+.carrito-producto h3 {
+    color: white;
+}
+
+
+.carrito-producto p {
+    color: #848181;
+    font-style: italic;
+}
+
+
+.cantidad {
+    background: #292727;
+    color: white;
+    border-radius: 20px;
+    padding: 6px 15px;
+    display: inline-flex;
+    align-items: center;
+}
+
+
+.subtotal {
+    border-top: 2px solid #292727;
+    padding-top: 25px;
+    margin-top: 25px;
+    color: #e6cbb5;
+}
+
+
+.btn-continuar {
+    background: #865026;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+}
+
+
+.btn-continuar:hover {
+    background: #da8442;
+    color: white;
+}
+
+
+.modal-content {
+    background: #292727;
+    color: white;
+    border-radius: 25px;
+}
+
+
+.opcion-pedido {
+    background: #3b3939;
+    border-radius: 15px;
+    padding: 8px;
+}
+
+
+.direccion {
+    border: 2px solid #848181;
+    background: transparent;
+    color: white;
+    border-radius: 20px;
+}
+
+
+.direccion::placeholder {
+    color: #e6cbb5;
+}
+
+
+.local-retiro {
+    background: #dfb663;
+    color: #292727;
+    border-radius: 20px;
+    padding: 15px;
+}
+
+
+.form-login {
+    max-width: 900px;
+    margin: auto;
+}
+
+
+.form-login input {
+    background: #000;
+    border: 3px solid white;
+    color: white;
+    border-radius: 20px;
+}
+
+
+.form-login input:focus {
+    background: #000;
+    color: white;
+}
+
+
+@media(max-width: 767px) {
+
+    .hero-texto {
+        min-height: 420px;
+    }
+
+
+    .hero-texto h1 {
+        font-size: 2rem;
+    }
+
+
+    .hero-imagen {
+        min-height: 420px;
+    }
+
+
+    .hero-imagen a {
+        font-size: 2rem;
+    }
+
+
+    .carrito-producto img {
+        width: 100%;
+        height: 110px;
+    }
+
+
+    .logo-navbar {
+        height: 45px;
+        max-width: 170px;
+    }
+
+}
+
+.modal-tokyo {
+    background: linear-gradient(180deg, #2f2b2b 0%, #262222 100%);
+    border: 1px solid rgba(223, 182, 99, 0.18);
+    border-radius: 28px;
+    color: #f3eadf;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+    overflow: hidden;
+}
+
+.modal-tokyo-header {
+    padding: 28px 28px 10px 28px;
+    position: relative;
+}
+
+.modal-tokyo-title {
+    font-size: 2.3rem;
+    font-weight: 700;
+    color: #fff6ea;
+    margin: 0;
+}
+
+.modal-tokyo-subtitle {
+    color: #cdb9a7;
+    font-size: 1rem;
+}
+
+.modal-tokyo-body {
+    padding: 10px 28px 10px 28px;
+}
+
+.modal-tokyo-footer {
+    padding: 10px 28px 28px 28px;
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.pedido-switch {
+    background: #3a3535;
+    border-radius: 18px;
+    padding: 6px;
+    display: flex;
+    gap: 8px;
+}
+
+.pedido-switch-btn {
+    flex: 1;
+    border: none;
+    border-radius: 14px;
+    padding: 14px 18px;
+    font-weight: 700;
+    background: transparent;
+    color: #d6d0cb;
+    transition: 0.25s ease;
+}
+
+.pedido-switch-btn:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.pedido-switch-btn.activo {
+    background: #dfb663;
+    color: #2b241a;
+    box-shadow: 0 8px 20px rgba(223, 182, 99, 0.18);
+}
+
+.modal-label {
+    color: #f0e4d6;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.input-tokyo {
+    background: #151313;
+    border: 2px solid #4a4343;
+    color: #fff;
+    border-radius: 16px;
+    padding: 14px 16px;
+    font-size: 1rem;
+}
+
+.input-tokyo::placeholder {
+    color: #9f9286;
+}
+
+.input-tokyo:focus {
+    background: #151313;
+    color: #fff;
+    border-color: #dfb663;
+    box-shadow: 0 0 0 0.25rem rgba(223, 182, 99, 0.14);
+}
+
+.aviso-entrega {
+    background: rgba(223, 182, 99, 0.12);
+    border: 1px solid rgba(223, 182, 99, 0.22);
+    color: #e9d7bd;
+    border-radius: 18px;
+    padding: 14px 16px;
+    font-size: 0.98rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.aviso-entrega-icono {
+    font-size: 1.2rem;
+}
+
+.local-card {
+    width: 100%;
+    border: 1px solid #4a4343;
+    border-radius: 20px;
+    background: #1c1919;
+    color: #f5ede5;
+    text-align: left;
+    padding: 18px;
+    transition: 0.25s ease;
+}
+
+.local-card:hover {
+    border-color: #dfb663;
+    transform: translateY(-2px);
+}
+
+.local-card h4 {
+    margin-top: 8px;
+    margin-bottom: 8px;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #fff;
+}
+
+.local-card p,
+.local-card small {
+    color: #ccb9a6;
+}
+
+.local-card.selected {
+    border-color: #dfb663;
+    background: linear-gradient(180deg, rgba(223, 182, 99, 0.16) 0%, rgba(223, 182, 99, 0.08) 100%);
+    box-shadow: 0 10px 24px rgba(223, 182, 99, 0.12);
+}
+
+.local-badge {
+    display: inline-block;
+    background: #dfb663;
+    color: #2b241a;
+    font-size: 0.78rem;
+    font-weight: 700;
+    padding: 6px 10px;
+    border-radius: 999px;
+}
+
+.btn-modal-principal {
+    flex: 1;
+    border: none;
+    border-radius: 16px;
+    padding: 14px 18px;
+    background: #865026;
+    color: white;
+    font-weight: 700;
+    transition: 0.25s ease;
+}
+
+.btn-modal-principal:hover {
+    background: #a8642f;
+}
+
+.btn-modal-secundario {
+    flex: 1;
+    border: 1px solid #5c5555;
+    border-radius: 16px;
+    padding: 14px 18px;
+    background: transparent;
+    color: #f3eadf;
+    font-weight: 700;
+    transition: 0.25s ease;
+}
+
+.btn-modal-secundario:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+@media (max-width: 767px) {
+    .modal-tokyo-title {
+        font-size: 1.7rem;
+    }
+
+    .modal-tokyo-header,
+    .modal-tokyo-body,
+    .modal-tokyo-footer {
+        padding-left: 18px;
+        padding-right: 18px;
+    }
+
+    .modal-tokyo-footer {
+        flex-direction: column;
+    }
+}
