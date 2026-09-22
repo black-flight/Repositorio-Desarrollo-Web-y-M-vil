@@ -1,3 +1,0 @@
-Inicialmente pensé que el alcance de este PR4 era solo la definición de la paleta de colores y estilos base, lo cual se puede ver reflejado en el archivo estilos.css y en cómo quedó el index.php. Suponía que esa ya era una versión entregable como primer boceto.
-
-Sin embargo, para dar a entender el "MVP" y hacer alusión al caso final, adjunto estas 4 imágenes que definen la estructura visual del proyecto a futuro.
