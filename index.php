@@ -1,128 +1,310 @@
-<html>
-    <head>
-        <title>Página Principal</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-        <link href="estilos.css" rel="stylesheet">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>     
-    </head>
-    <body>
-        <!==Navbar==>
-        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="index.php">Tokyo Noodles</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
-                    <span class="navbar-toggler-icon"></span>
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <title>Tokyo Noodles</title>
+
+    <meta charset="utf-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1"
+    >
+
+    <link
+        rel="icon"
+        type="image/png"
+        href="img/favicon.png"
+    >
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="estilos.css"
+    >
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js">
+    </script>
+
+    <script src="productos.js"></script>
+
+</head>
+
+
+<body onload="actualizarContadorCarrito();">
+
+
+<nav class="navbar navbar-expand-md navbar-dark tn-navbar">
+
+    <div class="container-fluid">
+
+        <a
+            class="navbar-brand me-5"
+            href="index.php"
+        >
+
+            <img
+                src="img/logo.png"
+                alt="Tokyo Noodles"
+                class="logo-navbar"
+            >
+
+        </a>
+
+
+        <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarTokyo"
+        >
+
+            <span class="navbar-toggler-icon"></span>
+
+        </button>
+
+
+        <div
+            class="collapse navbar-collapse"
+            id="navbarTokyo"
+        >
+
+            <ul class="navbar-nav me-auto">
+
+                <li class="nav-item">
+
+                    <a
+                        class="nav-link nav-activo px-4"
+                        href="index.php"
+                    >
+                        Inicio
+                    </a>
+
+                </li>
+
+
+                <li class="nav-item">
+
+                    <a
+                        class="nav-link px-4"
+                        href="menu.php"
+                    >
+                        Menú
+                    </a>
+
+                </li>
+
+
+                <li class="nav-item">
+
+                    <a
+                        class="nav-link px-4"
+                        href="promociones.php"
+                    >
+                        Promociones
+                    </a>
+
+                </li>
+
+            </ul>
+
+
+            <div class="d-flex flex-column flex-md-row gap-3 align-items-md-center">
+
+                <button
+                    class="btn nav-link"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#buscadorTokyo"
+                >
+                    🔍 Buscar
                 </button>
-                <div class="collapse navbar-collapse" id="collapsibleNavbar">
-                    <ul class="navbar-nav">
-                        <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Empresa</a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="empresa.php">Quienes somos</a></li>
-                            <li><a class="dropdown-item" href="#">Nuestro Equipo</a></li>
-                            <li><a class="dropdown-item" href="#">Misión</a></li>
-                        </ul>
-                        </li>   
 
-                        <li class="nav-item">
-                            <a class="nav-link" href="servicios.php">Servicios</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="productos.php">Productos</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="contacto.php">Contactos</a>
-                        </li>
-                        <li class="nav-item">
-                            <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#myModal">Acceder</button>
-                        </li>
-                    </ul>
-                </div>
+
+                <a
+                    class="nav-link"
+                    href="carrito.php"
+                >
+                    🛒 Carrito
+                    (<span id="contador-carrito">0</span>)
+                </a>
+
+
+                <a
+                    class="nav-link"
+                    href="login.php"
+                >
+                    Usuario
+                </a>
+
             </div>
-        </nav>
 
-        <!==Container==>
-    
-        <div class="container-fluid" id="inicio">
+        </div>
 
-            <h1 class="titulo-principal">Bienvenido a Tokyo Noodles</h1>
+    </div>
 
-            <p>
-                En Mi Empresa contamos con distintos servicios pensados para
-                ayudar a nuestros clientes y entregar soluciones de acuerdo
-                a sus necesidades.
+</nav>
+
+
+<div
+    class="collapse"
+    id="buscadorTokyo"
+>
+
+    <div class="container-fluid buscador-tokyo p-3">
+
+        <input
+            type="text"
+            class="form-control"
+            placeholder="Buscar ramen, bebidas o promociones..."
+        >
+
+    </div>
+
+</div>
+
+
+<div class="container-fluid">
+
+    <div class="row">
+
+        <section class="col-12 col-lg-8 hero-texto">
+
+            <h1>
+                ¿PREPARADO PARA VIAJAR A TRAVÉS DEL SABOR?
+            </h1>
+
+
+            <p class="mt-4">
+
+                Descubre sabores únicos inspirados
+                en la esencia de Japón
+
             </p>
 
+        </section>
+
+
+        <section class="col-12 col-lg-4 hero-imagen">
+
+            <a href="menu.php">
+                PIDE AQUÍ
+            </a>
+
+        </section>
+
+    </div>
+
+</div>
+
+
+<footer class="container-fluid footer-tokyo">
+
+    <div class="row g-4 text-center text-md-start">
+
+        <div class="col-12 col-sm-6 col-lg">
+
+            <h4>
+                CONÓCENOS
+            </h4>
+
+
             <p>
-                Nuestro objetivo es entregar soluciones de calidad y seguir
-                creciendo junto a nuestros clientes.
+
+                Tokyo Noodles nació con una idea simple:
+                traer un pedacito de Tokio a tu mesa.
+
             </p>
 
-            <h4>Conoce más sobre nosotros</h4>
-
-            <a href="empresa.php">Ir a Empresa</a><br>
-            <a href="servicios.php"> Ir a Servicios </a><br>
-            <a href="productos.php">Ir a Productos</a><br>
-            <a href="contacto.php"> Ir a Contacto</a><br>
-
-            <br>
 
             <p>
-                Puedes revisar nuestros servicios, conocer nuestros productos
-                o comunicarte con nosotros mediante la sección de contacto.
+
+                Mezclamos tradición japonesa,
+                sabores únicos y ramen hecho
+                con personalidad.
+
             </p>
 
         </div>
 
-        <!==Footer==>
-        <div class="container-fuid bg-dark">
-            <div class="row">
-                <div class="col-4"></div>
-                <div class="col-4" style="color:white"><strong>TokyoNoodles@2026</strong></div>
-                <div class="col-4"></div>
-            </div>
+
+        <div class="col-12 col-sm-6 col-lg">
+
+            <h4>
+                CONTACTO
+            </h4>
+
+            <p>Whatsapp</p>
+
+            <p>Instagram</p>
+
+            <p>Facebook</p>
+
+            <p>TikTok</p>
+
         </div>
 
-        <!==Modal==>
-        <div class="modal fade" id="myModal">
-            <div class="modal-dialog">
-                <div class="modal-content">
 
-                    <!-- Modal Header -->
-                    <div class="modal-header">
-                        <h4 class="modal-title">Autnticación</h4>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                    </div>
+        <div class="col-12 col-sm-6 col-lg text-center">
 
-                    <!-- Modal body -->
-                    <div class="modal-body">
-                        <form action="empresa.php">
-                            <div class="mb-3 mt-3">
-                                <label for="email" class="form-label">Email:</label>
-                                <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
-                            </div>
-                            <div class="mb-3">
-                                <label for="pwd" class="form-label">Password:</label>
-                                <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pswd">
-                            </div>
-                            <div class="form-check mb-3">
-                                <label class="form-check-label">
-                                <input class="form-check-input" type="checkbox" name="remember"> Remember me
-                                </label>
-                            </div>
-                        <button type="submit" class="btn btn-primary">Login</button>
-                        </form>
-                    </div>
+            <img
+                src="img/logo.png"
+                alt="Tokyo Noodles"
+                class="logo-footer"
+            >
 
-                    <!-- Modal footer -->
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                    </div>
+        </div>
 
-                </div>
-            </div>
-        </div>        
-    </body>
+
+        <div class="col-12 col-sm-6 col-lg">
+
+            <h4>
+                HORARIO
+            </h4>
+
+            <p>
+
+                Lunes - Martes
+                <br>
+                12:00 - 01:00
+
+            </p>
+
+
+            <p>
+
+                Miércoles - Sábado
+                <br>
+                12:00 - 02:00
+
+            </p>
+
+        </div>
+
+
+        <div class="col-12 col-sm-6 col-lg">
+
+            <h4>
+                UBICACIÓN
+            </h4>
+
+            <p>
+                Maipú 1234
+            </p>
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+</body>
+
 </html>
