@@ -39,10 +39,16 @@ def health():
     dependencies=[Depends(verify_gateway)]
 )
 def orders(
-    x_authenticated_client: str | None = Header(default=None)
+    x_authenticated_client: str | None = Header(default=None),
+    x_authenticated_user: str | None = Header(default=None),
+    x_authenticated_roles: str | None = Header(default=None)
 ):
     return {
-        "authenticated_client": x_authenticated_client,
+        "identity": {
+            "client_id": x_authenticated_client,
+            "username": x_authenticated_user,
+            "roles": x_authenticated_roles
+        },
         "orders": [
             {
                 "id": 1001,

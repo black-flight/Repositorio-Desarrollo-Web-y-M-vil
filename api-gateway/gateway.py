@@ -1,5 +1,4 @@
 import os
-import secrets
 import httpx
 
 from fastapi import (
@@ -15,10 +14,17 @@ from fastapi.security import (
     HTTPAuthorizationCredentials
 )
 
+
 app = FastAPI(title="Local API Gateway")
 
 security = HTTPBearer(
     auto_error=False
+)
+
+
+AUTH_SERVICE_URL = os.getenv(
+    "AUTH_SERVICE_URL",
+    "http://127.0.0.1:9003"
 )
 
 VAULT_ADDR = os.getenv(
@@ -37,6 +43,7 @@ BACKEND_URL2 = os.getenv(
     "BACKEND_URL2",
     "http://127.0.0.1:9002"
 )
+
 
 if not VAULT_TOKEN:
     raise RuntimeError(
@@ -80,25 +87,52 @@ async def authenticate_client(
             detail="Bearer token requerido"
         )
 
-    vault_secrets = await get_gateway_secrets()
+    gateway_secrets = await get_gateway_secrets()
 
-    expected_token = vault_secrets["client_token"]
-    received_token = credentials.credentials
+    introspection_secret = gateway_secrets[
+        "auth_introspection_secret"
+    ]
 
-    valid = secrets.compare_digest(
-        received_token,
-        expected_token
-    )
+    try:
+        async with httpx.AsyncClient(timeout=5.0) as client:
+            response = await client.post(
+                f"{AUTH_SERVICE_URL}/introspect",
+                json={
+                    "token": credentials.credentials
+                },
+                headers={
+                    "X-Gateway-Auth-Secret": introspection_secret
+                }
+            )
 
-    if not valid:
+    except httpx.RequestError:
+        raise HTTPException(
+            status_code=503,
+            detail="Authentication Service no disponible"
+        )
+
+    if response.status_code != 200:
+        raise HTTPException(
+            status_code=502,
+            detail="Error consultando Authentication Service"
+        )
+
+    identity = response.json()
+
+    if not identity.get(
+        "active",
+        False
+    ):
         raise HTTPException(
             status_code=401,
-            detail="Token invalido"
+            detail="Token invalido o expirado"
         )
 
     return {
-        "client_id": "student-client",
-        "backend_secret": vault_secrets[
+        "user_id": identity["user_id"],
+        "username": identity["username"],
+        "roles": identity["roles"],
+        "backend_secret": gateway_secrets[
             "backend_shared_secret"
         ]
     }
@@ -140,10 +174,14 @@ async def proxy(
 
     gateway_headers = {
         "X-Gateway-Secret": auth["backend_secret"],
-        "X-Authenticated-Client": auth["client_id"]
+        "X-Authenticated-Client": auth["user_id"],
+        "X-Authenticated-User": auth["username"],
+        "X-Authenticated-Roles": ",".join(auth["roles"])
     }
 
-    content_type = request.headers.get("content-type")
+    content_type = request.headers.get(
+        "content-type"
+    )
 
     if content_type:
         gateway_headers["content-type"] = content_type
