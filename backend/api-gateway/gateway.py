@@ -1,4 +1,3 @@
-
 import os
 import re
 
@@ -139,6 +138,9 @@ def destino_autorizado(metodo, path, roles):
 
         if metodo == "DELETE" and admin:
             return CLIENTS_URL
+
+    if path == "orders/reporte-ventas" and metodo == "GET" and admin:
+        return ORDERS_URL
 
     if path == "orders" and metodo in ("GET", "POST"):
         return ORDERS_URL

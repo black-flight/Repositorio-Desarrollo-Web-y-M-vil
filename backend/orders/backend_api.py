@@ -1,6 +1,6 @@
 import os
 import secrets
-from datetime import datetime, timezone
+from datetime import date, datetime, timedelta, timezone
 from typing import Literal
 
 import httpx
@@ -118,6 +118,72 @@ async def listar_pedidos(auth=Depends(verificar_gateway)):
     ).to_list(length=200)
 
     return {"orders": pedidos}
+
+
+@app.get("/orders/reporte-ventas")
+async def reporte_ventas(
+    desde: date,
+    hasta: date,
+    auth=Depends(verificar_gateway)
+):
+    if not auth["admin"]:
+        raise HTTPException(
+            status_code=403,
+            detail="Permiso de administrador requerido"
+        )
+
+    if desde > hasta or (hasta - desde).days > 366 or hasta.year == 9999:
+        raise HTTPException(
+            status_code=400,
+            detail="Periodo invalido (maximo 366 dias)"
+        )
+
+    estados_contabilizados = [
+        "pagado", "en_preparacion", "listo", "en_reparto", "entregado"
+    ]
+
+    filas = await pedidos_db.aggregate([
+        {
+            "$match": {
+                "fecha": {
+                    "$gte": desde.isoformat(),
+                    "$lt": (hasta + timedelta(days=1)).isoformat()
+                },
+                "estado": {"$in": estados_contabilizados}
+            }
+        },
+        {
+            "$group": {
+                "_id": "$estado",
+                "cantidad_pedidos": {"$sum": 1},
+                "monto_clp": {"$sum": "$total"}
+            }
+        }
+    ]).to_list(length=10)
+
+    desglose = {
+        fila["_id"]: {
+            "cantidad_pedidos": fila["cantidad_pedidos"],
+            "monto_clp": fila["monto_clp"]
+        }
+        for fila in filas
+    }
+
+    return {
+        "periodo": {
+            "desde": desde.isoformat(),
+            "hasta": hasta.isoformat(),
+            "criterio_fecha": "creacion_del_pedido"
+        },
+        "cantidad_pedidos": sum(
+            x["cantidad_pedidos"] for x in desglose.values()
+        ),
+        "monto_total_clp": sum(
+            x["monto_clp"] for x in desglose.values()
+        ),
+        "ventas_por_estado": desglose,
+        "estados_contabilizados": estados_contabilizados
+    }
 
 
 @app.get("/orders/{pedido_id}")
