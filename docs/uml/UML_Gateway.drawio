@@ -1,0 +1,226 @@
+<mxfile host="app.diagrams.net" agent="TokyoNoodles">
+  <diagram id="Gateway_y_politicas" name="Gateway y politicas">
+    <mxGraphModel dx="1776" dy="921" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2290" pageHeight="1720" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="ttl" parent="1" style="text;html=1;whiteSpace=wrap;rounded=0;fillColor=none;strokeColor=none;fontColor=#294B66;fontSize=27;fontStyle=1;align=left;verticalAlign=middle;" value="TOKYO NOODLES | UML del API Gateway y políticas" vertex="1">
+          <mxGeometry height="52" width="2010" x="65" y="25" as="geometry" />
+        </mxCell>
+        <mxCell id="sub" parent="1" style="text;html=1;whiteSpace=wrap;rounded=0;fillColor=none;strokeColor=none;fontColor=#294B66;fontSize=15;fontStyle=0;align=left;verticalAlign=middle;" value="Estructura lógica de enrutamiento, identidad, autorización, secretos y agregación GraphQL" vertex="1">
+          <mxGeometry height="37" width="2100" x="65" y="84" as="geometry" />
+        </mxCell>
+        <mxCell id="top" parent="1" style="text;html=1;whiteSpace=wrap;rounded=0;fillColor=none;strokeColor=none;fontColor=#294B66;fontSize=19;fontStyle=1;align=left;verticalAlign=middle;" value="POLÍTICAS Y DEFINICIONES" vertex="1">
+          <mxGeometry height="34" width="800" x="75" y="140" as="geometry" />
+        </mxCell>
+        <mxCell id="route" parent="1" style="shape=rectangle;rounded=1;arcSize=7;whiteSpace=wrap;html=1;align=center;verticalAlign=top;spacingTop=14;spacingLeft=16;spacingRight=10;spacingBottom=12;fillColor=#EDF0FB;strokeColor=#484E8A;strokeWidth=1.5;fontColor=#273D4C;fontSize=14;overflow=fill;" value="&lt;div style=&quot;font-size: 17px; font-weight: bold; color: rgb(72, 78, 138); margin-bottom: 7px;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 17px; font-weight: bold; color: rgb(72, 78, 138); margin-bottom: 7px;&quot;&gt;RouteDefinition&lt;/div&gt;&lt;div style=&quot;font-size: 12px; color: rgb(70, 81, 92); line-height: 1.55;&quot;&gt;path: String&lt;br&gt;method: HTTPMethod&lt;br&gt;target: ServiceTarget&lt;br&gt;requiredRoles: String[]&lt;br&gt;+ coincide(method, path): Boolean&lt;br&gt;Ej.: GET /api/orders/{id}&lt;/div&gt;" vertex="1">
+          <mxGeometry height="240" width="345" x="80" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="authp" parent="1" style="shape=rectangle;rounded=1;arcSize=7;whiteSpace=wrap;html=1;align=center;verticalAlign=top;spacingTop=14;spacingLeft=16;spacingRight=10;spacingBottom=12;fillColor=#FDF3E6;strokeColor=#9B6A2F;strokeWidth=1.5;fontColor=#273D4C;fontSize=14;overflow=fill;" value="&lt;div style=&quot;font-size: 17px; font-weight: bold; color: rgb(155, 106, 47); margin-bottom: 7px;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 17px; font-weight: bold; color: rgb(155, 106, 47); margin-bottom: 7px;&quot;&gt;AuthenticationPolicy&lt;/div&gt;&lt;div style=&quot;font-size: 12px; color: rgb(70, 81, 92); line-height: 1.55;&quot;&gt;tokenType: Bearer&lt;br&gt;+ autenticar(token): Identidad&lt;br&gt;+ introspectar(token): Resultado&lt;br&gt;Falla: 401 o indisponibilidad&lt;/div&gt;" vertex="1">
+          <mxGeometry height="240" width="345" x="480" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="autzp" parent="1" style="shape=rectangle;rounded=1;arcSize=7;whiteSpace=wrap;html=1;align=center;verticalAlign=top;spacingTop=14;spacingLeft=16;spacingRight=10;spacingBottom=12;fillColor=#FDF3E6;strokeColor=#9B6A2F;strokeWidth=1.5;fontColor=#273D4C;fontSize=14;overflow=fill;" value="&lt;div style=&quot;font-size: 17px; font-weight: bold; color: rgb(155, 106, 47); margin-bottom: 7px;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 17px; font-weight: bold; color: rgb(155, 106, 47); margin-bottom: 7px;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 17px; font-weight: bold; color: rgb(155, 106, 47); margin-bottom: 7px;&quot;&gt;AuthorizationPolicy&lt;/div&gt;&lt;div style=&quot;font-size: 12px; color: rgb(70, 81, 92); line-height: 1.55;&quot;&gt;roles: String[]&lt;br&gt;+ autorizar(ruta, metodo, rol): Boolean&lt;br&gt;+ verificarPropiedad(id): Boolean&lt;br&gt;Propiedad reforzada en el servicio&lt;/div&gt;" vertex="1">
+          <mxGeometry height="240" width="345" x="880" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="secretp" parent="1" style="shape=rectangle;rounded=1;arcSize=7;whiteSpace=wrap;html=1;align=center;verticalAlign=top;spacingTop=14;spacingLeft=16;spacingRight=10;spacingBottom=12;fillColor=#FDF3E6;strokeColor=#9B6A2F;strokeWidth=1.5;fontColor=#273D4C;fontSize=14;overflow=fill;" value="&lt;div style=&quot;font-size: 17px; font-weight: bold; color: rgb(155, 106, 47); margin-bottom: 7px;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 17px; font-weight: bold; color: rgb(155, 106, 47); margin-bottom: 7px;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 17px; font-weight: bold; color: rgb(155, 106, 47); margin-bottom: 7px;&quot;&gt;SecretProvider&lt;/div&gt;&lt;div style=&quot;font-size: 12px; color: rgb(70, 81, 92); line-height: 1.55;&quot;&gt;vaultPath: secret/data/gateway&lt;br&gt;+ obtenerSecretos(): Referencias&lt;br&gt;+ verificarDisponibilidad(): Boolean&lt;br&gt;No entrega secretos al navegador&lt;/div&gt;" vertex="1">
+          <mxGeometry height="240" width="345" x="1280" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="schema" parent="1" style="shape=rectangle;rounded=1;arcSize=7;whiteSpace=wrap;html=1;align=center;verticalAlign=top;spacingTop=14;spacingLeft=16;spacingRight=10;spacingBottom=12;fillColor=#EDF0FB;strokeColor=#484E8A;strokeWidth=1.5;fontColor=#273D4C;fontSize=14;overflow=fill;" value="&lt;div style=&quot;font-size: 17px; font-weight: bold; color: rgb(72, 78, 138); margin-bottom: 7px;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 17px; font-weight: bold; color: rgb(72, 78, 138); margin-bottom: 7px;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 17px; font-weight: bold; color: rgb(72, 78, 138); margin-bottom: 7px;&quot;&gt;GraphQLSchema&lt;/div&gt;&lt;div style=&quot;font-size: 12px; color: rgb(70, 81, 92); line-height: 1.55;&quot;&gt;Query: resumenPedido(id: ID!)&lt;br&gt;Tipos: ResumenPedido, DetallePedido&lt;br&gt;Sin Mutations publicadas&lt;br&gt;Campos autorizados por schema&lt;/div&gt;" vertex="1">
+          <mxGeometry height="240" width="340" x="1680" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="top2" parent="1" style="text;html=1;whiteSpace=wrap;rounded=0;fillColor=none;strokeColor=none;fontColor=#294B66;fontSize=19;fontStyle=1;align=left;verticalAlign=middle;" value="GATEWAYS Y COMPONENTES" vertex="1">
+          <mxGeometry height="34" width="800" x="75" y="490" as="geometry" />
+        </mxCell>
+        <mxCell id="apigw" parent="1" style="shape=rectangle;rounded=1;arcSize=7;whiteSpace=wrap;html=1;align=center;verticalAlign=top;spacingTop=14;spacingLeft=16;spacingRight=10;spacingBottom=12;fillColor=#EDF0FB;strokeColor=#484E8A;strokeWidth=1.5;fontColor=#273D4C;fontSize=14;overflow=fill;" value="&lt;div style=&quot;font-size: 17px; font-weight: bold; color: rgb(72, 78, 138); margin-bottom: 7px;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 17px; font-weight: bold; color: rgb(72, 78, 138); margin-bottom: 7px;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 17px; font-weight: bold; color: rgb(72, 78, 138); margin-bottom: 7px;&quot;&gt;«logical» ApiGateway&lt;/div&gt;&lt;div style=&quot;font-size: 12px; color: rgb(70, 81, 92); line-height: 1.55;&quot;&gt;authServiceUrl: String&lt;br&gt;vaultAddr: String&lt;br&gt;serviceTargets: ServiceTarget[]&lt;br&gt;+ login(datos): Token&lt;br&gt;+ autenticar(token): Identidad&lt;br&gt;+ destinoAutorizado(method, path, roles): URL&lt;br&gt;+ proxy(request): Response&lt;br&gt;+ graphqlProxy(request): Response&lt;/div&gt;" vertex="1">
+          <mxGeometry height="305" width="470" x="80" y="550" as="geometry" />
+        </mxCell>
+        <mxCell id="target" parent="1" style="shape=rectangle;rounded=1;arcSize=7;whiteSpace=wrap;html=1;align=center;verticalAlign=top;spacingTop=14;spacingLeft=16;spacingRight=10;spacingBottom=12;fillColor=#EDF0FB;strokeColor=#484E8A;strokeWidth=1.5;fontColor=#273D4C;fontSize=14;overflow=fill;" value="&lt;div style=&quot;font-size:17px;font-weight:bold;color:#484E8A;margin-bottom:7px&quot;&gt;ServiceTarget&lt;/div&gt;&lt;div style=&quot;font-size:12px;color:#46515C;line-height:1.55&quot;&gt;systemName: String&lt;br&gt;baseUrl: String&lt;br&gt;allowedMethods: HTTPMethod[]&lt;br&gt;+ resolverDestino(path): URL&lt;br&gt;inventory / orders / clients / payments&lt;/div&gt;" vertex="1">
+          <mxGeometry height="270" width="345" x="630" y="550" as="geometry" />
+        </mxCell>
+        <mxCell id="graphql" parent="1" style="shape=rectangle;rounded=1;arcSize=7;whiteSpace=wrap;html=1;align=center;verticalAlign=top;spacingTop=14;spacingLeft=16;spacingRight=10;spacingBottom=12;fillColor=#EDF0FB;strokeColor=#484E8A;strokeWidth=1.5;fontColor=#273D4C;fontSize=14;overflow=fill;" value="&lt;div style=&quot;font-size: 17px; font-weight: bold; color: rgb(72, 78, 138); margin-bottom: 7px;&quot;&gt;&lt;span style=&quot;color: light-dark(rgb(72, 78, 138), rgb(160, 165, 217)); background-color: transparent;&quot;&gt;«logical» GraphQLGateway&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 12px; color: rgb(70, 81, 92); line-height: 1.55;&quot;&gt;path: /graphql (POST)&lt;br&gt;maxQueryLength: Integer&lt;br&gt;maxDepth: Integer&lt;br&gt;maxFields: Integer&lt;br&gt;+ revisarConsulta(query): Boolean&lt;br&gt;+ ejecutarResolver(query, identidad): JSON&lt;/div&gt;" vertex="1">
+          <mxGeometry height="280" width="420" x="1080" y="550" as="geometry" />
+        </mxCell>
+        <mxCell id="resolver" parent="1" style="shape=rectangle;rounded=1;arcSize=7;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingTop=14;spacingLeft=16;spacingRight=10;spacingBottom=12;fillColor=#EDF0FB;strokeColor=#484E8A;strokeWidth=1.5;fontColor=#273D4C;fontSize=14;overflow=fill;" value="&lt;div style=&quot;font-size: 17px; font-weight: bold; color: rgb(72, 78, 138); margin-bottom: 7px;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 17px; font-weight: bold; color: rgb(72, 78, 138); margin-bottom: 7px;&quot;&gt;&amp;nbsp; &amp;nbsp;GraphQLResolver&lt;/div&gt;&lt;span style=&quot;color: light-dark(rgb(70, 81, 92), rgb(160, 170, 179)); font-size: 12px; background-color: transparent;&quot;&gt;+ resumenPedido(id, identidad): Resumen&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;color: light-dark(rgb(70, 81, 92), rgb(160, 170, 179)); font-size: 12px; background-color: transparent;&quot;&gt;+ consultarOrders(id): Pedido&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;color: light-dark(rgb(70, 81, 92), rgb(160, 170, 179)); font-size: 12px; background-color: transparent;&quot;&gt;+ consultarInventory(): Producto[]&lt;/span&gt;&lt;br&gt;&lt;div style=&quot;font-size: 12px; color: rgb(70, 81, 92); line-height: 1.55;&quot;&gt;+ devolverAdvertencias(): String[]&lt;/div&gt;" vertex="1">
+          <mxGeometry height="280" width="400" x="1605" y="550" as="geometry" />
+        </mxCell>
+        <mxCell id="bottom" parent="1" style="text;html=1;whiteSpace=wrap;rounded=0;fillColor=none;strokeColor=none;fontColor=#294B66;fontSize=19;fontStyle=1;align=left;verticalAlign=middle;" value="SERVICIOS Y DEPENDENCIAS PRIVADAS" vertex="1">
+          <mxGeometry height="34" width="800" x="75" y="940" as="geometry" />
+        </mxCell>
+        <mxCell id="auth" parent="1" style="shape=rectangle;rounded=1;arcSize=7;whiteSpace=wrap;html=1;align=center;verticalAlign=top;spacingTop=14;spacingLeft=16;spacingRight=10;spacingBottom=12;fillColor=#EAF4ED;strokeColor=#28754B;strokeWidth=1.5;fontColor=#273D4C;fontSize=14;overflow=fill;" value="&lt;div style=&quot;font-size: 17px; font-weight: bold; color: rgb(40, 117, 75); margin-bottom: 7px;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 17px; font-weight: bold; color: rgb(40, 117, 75); margin-bottom: 7px;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 17px; font-weight: bold; color: rgb(40, 117, 75); margin-bottom: 7px;&quot;&gt;«service» AuthService&lt;/div&gt;&lt;div style=&quot;font-size: 12px; color: rgb(70, 81, 92); line-height: 1.55;&quot;&gt;+ login(datos): Token&lt;br&gt;+ introspectar(token): Identidad&lt;br&gt;+ logout(token): Resultado&lt;br&gt;Usuarios y sesiones en MongoDB&lt;/div&gt;" vertex="1">
+          <mxGeometry height="235" width="370" x="80" y="1000" as="geometry" />
+        </mxCell>
+        <mxCell id="backends" parent="1" style="shape=rectangle;rounded=1;arcSize=7;whiteSpace=wrap;html=1;align=center;verticalAlign=top;spacingTop=14;spacingLeft=16;spacingRight=10;spacingBottom=12;fillColor=#EAF4ED;strokeColor=#28754B;strokeWidth=1.5;fontColor=#273D4C;fontSize=14;overflow=fill;" value="&lt;div style=&quot;font-size: 17px; font-weight: bold; color: rgb(40, 117, 75); margin-bottom: 7px;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 17px; font-weight: bold; color: rgb(40, 117, 75); margin-bottom: 7px;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 17px; font-weight: bold; color: rgb(40, 117, 75); margin-bottom: 7px;&quot;&gt;«service» PrivateBusinessServices&lt;/div&gt;&lt;div style=&quot;font-size: 12px; color: rgb(70, 81, 92); line-height: 1.55;&quot;&gt;Inventory: catálogo y disponibilidad&lt;br&gt;Orders: pedidos y transiciones&lt;br&gt;Clients: datos personales y perfiles&lt;br&gt;Payments: solicitudes y estados&lt;br&gt;Credencial interna + controles por recurso&lt;/div&gt;" vertex="1">
+          <mxGeometry height="245" width="530" x="575" y="1000" as="geometry" />
+        </mxCell>
+        <mxCell id="vault" parent="1" style="shape=rectangle;rounded=1;arcSize=7;whiteSpace=wrap;html=1;align=center;verticalAlign=top;spacingTop=14;spacingLeft=16;spacingRight=10;spacingBottom=12;fillColor=#F3F3F3;strokeColor=#666C76;strokeWidth=1.5;fontColor=#273D4C;fontSize=14;overflow=fill;" value="&lt;div style=&quot;font-size: 17px; font-weight: bold; color: rgb(102, 108, 118); margin-bottom: 7px;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 17px; font-weight: bold; color: rgb(102, 108, 118); margin-bottom: 7px;&quot;&gt;&lt;span style=&quot;color: light-dark(rgb(102, 108, 118), rgb(140, 145, 153)); background-color: transparent;&quot;&gt;«service» Vault&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 12px; color: rgb(70, 81, 92); line-height: 1.55;&quot;&gt;ruta: secret/data/gateway&lt;br&gt;backend_shared_secret&lt;br&gt;auth_introspection_secret&lt;br&gt;graphql_shared_secret&lt;br&gt;Secretos fuera del navegador&lt;/div&gt;" vertex="1">
+          <mxGeometry height="225" width="365" x="1250" y="1000" as="geometry" />
+        </mxCell>
+        <mxCell id="orders" parent="1" style="shape=rectangle;rounded=1;arcSize=7;whiteSpace=wrap;html=1;align=center;verticalAlign=top;spacingTop=14;spacingLeft=16;spacingRight=10;spacingBottom=12;fillColor=#EAF4ED;strokeColor=#28754B;strokeWidth=1.5;fontColor=#273D4C;fontSize=14;overflow=fill;" value="&lt;div style=&quot;font-size: 17px; font-weight: bold; color: rgb(40, 117, 75); margin-bottom: 7px;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 17px; font-weight: bold; color: rgb(40, 117, 75); margin-bottom: 7px;&quot;&gt;«service» InternalAdapters&lt;/div&gt;&lt;div style=&quot;font-size: 12px; color: rgb(70, 81, 92); line-height: 1.55;&quot;&gt;Orders GET /orders/{id}&lt;br&gt;Inventory GET /products&lt;br&gt;HTTPX / fetch con tiempo máximo&lt;br&gt;Agrega una sola respuesta de lectura&lt;/div&gt;" vertex="1">
+          <mxGeometry height="220" width="385" x="1685" y="1000" as="geometry" />
+        </mxCell>
+        <mxCell id="e_api_route" edge="1" parent="1" source="apigw" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#476578;strokeWidth=1.8;fontSize=12;fontColor=#34485C;labelBackgroundColor=#FFFFFF;endArrow=none;startArrow=diamond;startFill=0;" target="route" value="define">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_api_route_a" connectable="0" parent="e_api_route" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;fontStyle=1;fontColor=#253D50;labelBackgroundColor=#FFFFFF;" value="1" vertex="1">
+          <mxGeometry relative="1" x="-0.88" as="geometry">
+            <mxPoint y="-11" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_api_route_b" connectable="0" parent="e_api_route" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;fontStyle=1;fontColor=#253D50;labelBackgroundColor=#FFFFFF;" value="1..*" vertex="1">
+          <mxGeometry relative="1" x="0.88" as="geometry">
+            <mxPoint y="11" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_api_authp" edge="1" parent="1" source="apigw" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#718E95;strokeWidth=1.2;fontSize=12;fontColor=#34485C;labelBackgroundColor=#FFFFFF;endArrow=open;startArrow=none;startFill=0;dashed=1;dashPattern=5 5;" target="authp" value="autentica">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_api_authp_a" connectable="0" parent="e_api_authp" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;fontStyle=1;fontColor=#253D50;labelBackgroundColor=#FFFFFF;" value="1" vertex="1">
+          <mxGeometry relative="1" x="-0.88" as="geometry">
+            <mxPoint y="-11" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_api_authp_b" connectable="0" parent="e_api_authp" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;fontStyle=1;fontColor=#253D50;labelBackgroundColor=#FFFFFF;" value="1" vertex="1">
+          <mxGeometry relative="1" x="0.88" as="geometry">
+            <mxPoint y="11" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_api_autzp" edge="1" parent="1" source="apigw" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#718E95;strokeWidth=1.2;fontSize=12;fontColor=#34485C;labelBackgroundColor=#FFFFFF;endArrow=open;startArrow=none;startFill=0;dashed=1;dashPattern=5 5;" target="autzp" value="autoriza">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_api_autzp_a" connectable="0" parent="e_api_autzp" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;fontStyle=1;fontColor=#253D50;labelBackgroundColor=#FFFFFF;" value="1" vertex="1">
+          <mxGeometry relative="1" x="-0.88" as="geometry">
+            <mxPoint y="-11" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_api_autzp_b" connectable="0" parent="e_api_autzp" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;fontStyle=1;fontColor=#253D50;labelBackgroundColor=#FFFFFF;" value="1" vertex="1">
+          <mxGeometry relative="1" x="0.88" as="geometry">
+            <mxPoint y="11" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_api_secret" edge="1" parent="1" source="apigw" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#718E95;strokeWidth=1.2;fontSize=12;fontColor=#34485C;labelBackgroundColor=#FFFFFF;endArrow=open;startArrow=none;startFill=0;dashed=1;dashPattern=5 5;" target="secretp" value="consulta">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_api_secret_a" connectable="0" parent="e_api_secret" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;fontStyle=1;fontColor=#253D50;labelBackgroundColor=#FFFFFF;" value="1" vertex="1">
+          <mxGeometry relative="1" x="-0.88" as="geometry">
+            <mxPoint y="-11" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_api_secret_b" connectable="0" parent="e_api_secret" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;fontStyle=1;fontColor=#253D50;labelBackgroundColor=#FFFFFF;" value="1" vertex="1">
+          <mxGeometry relative="1" x="0.88" as="geometry">
+            <mxPoint y="11" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_api_target" edge="1" parent="1" source="apigw" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#547183;strokeWidth=1.8;fontSize=12;fontColor=#34485C;labelBackgroundColor=#FFFFFF;endArrow=none;startArrow=none;startFill=0;" target="target" value="enruta">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_api_target_a" connectable="0" parent="e_api_target" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;fontStyle=1;fontColor=#253D50;labelBackgroundColor=#FFFFFF;" value="1" vertex="1">
+          <mxGeometry relative="1" x="-0.88" as="geometry">
+            <mxPoint y="-11" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_api_target_b" connectable="0" parent="e_api_target" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;fontStyle=1;fontColor=#253D50;labelBackgroundColor=#FFFFFF;" value="1..*" vertex="1">
+          <mxGeometry relative="1" x="0.88" as="geometry">
+            <mxPoint y="11" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_api_gql" edge="1" parent="1" source="apigw" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#718E95;strokeWidth=1.2;fontSize=12;fontColor=#34485C;labelBackgroundColor=#FFFFFF;endArrow=open;startArrow=none;startFill=0;dashed=1;dashPattern=5 5;" target="graphql" value="reenvía">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_api_gql_a" connectable="0" parent="e_api_gql" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;fontStyle=1;fontColor=#253D50;labelBackgroundColor=#FFFFFF;" value="1" vertex="1">
+          <mxGeometry relative="1" x="-0.88" as="geometry">
+            <mxPoint y="-11" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_api_gql_b" connectable="0" parent="e_api_gql" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;fontStyle=1;fontColor=#253D50;labelBackgroundColor=#FFFFFF;" value="1" vertex="1">
+          <mxGeometry relative="1" x="0.88" as="geometry">
+            <mxPoint y="11" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_gql_schema" edge="1" parent="1" source="graphql" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#718E95;strokeWidth=1.2;fontSize=12;fontColor=#34485C;labelBackgroundColor=#FFFFFF;endArrow=open;startArrow=none;startFill=0;dashed=1;dashPattern=5 5;" target="schema" value="expone">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_gql_schema_a" connectable="0" parent="e_gql_schema" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;fontStyle=1;fontColor=#253D50;labelBackgroundColor=#FFFFFF;" value="1" vertex="1">
+          <mxGeometry relative="1" x="-0.88" as="geometry">
+            <mxPoint y="-11" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_gql_schema_b" connectable="0" parent="e_gql_schema" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;fontStyle=1;fontColor=#253D50;labelBackgroundColor=#FFFFFF;" value="1" vertex="1">
+          <mxGeometry relative="1" x="0.88" as="geometry">
+            <mxPoint y="11" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_gql_resolver" edge="1" parent="1" source="graphql" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#547183;strokeWidth=1.8;fontSize=12;fontColor=#34485C;labelBackgroundColor=#FFFFFF;endArrow=none;startArrow=none;startFill=0;" target="resolver" value="ejecuta">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_gql_resolver_a" connectable="0" parent="e_gql_resolver" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;fontStyle=1;fontColor=#253D50;labelBackgroundColor=#FFFFFF;" value="1" vertex="1">
+          <mxGeometry relative="1" x="-0.88" as="geometry">
+            <mxPoint y="-11" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_gql_resolver_b" connectable="0" parent="e_gql_resolver" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;fontStyle=1;fontColor=#253D50;labelBackgroundColor=#FFFFFF;" value="1..*" vertex="1">
+          <mxGeometry relative="1" x="0.88" as="geometry">
+            <mxPoint y="11" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_api_auth" edge="1" parent="1" source="apigw" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#718E95;strokeWidth=1.2;fontSize=12;fontColor=#34485C;labelBackgroundColor=#FFFFFF;endArrow=open;startArrow=none;startFill=0;dashed=1;dashPattern=5 5;" target="auth" value="introspecta">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_api_auth_a" connectable="0" parent="e_api_auth" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;fontStyle=1;fontColor=#253D50;labelBackgroundColor=#FFFFFF;" value="1" vertex="1">
+          <mxGeometry relative="1" x="-0.88" as="geometry">
+            <mxPoint y="-11" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_api_auth_b" connectable="0" parent="e_api_auth" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;fontStyle=1;fontColor=#253D50;labelBackgroundColor=#FFFFFF;" value="1" vertex="1">
+          <mxGeometry relative="1" x="0.88" as="geometry">
+            <mxPoint y="11" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_secret_vault" edge="1" parent="1" source="secretp" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#718E95;strokeWidth=1.2;fontSize=12;fontColor=#34485C;labelBackgroundColor=#FFFFFF;endArrow=open;startArrow=none;startFill=0;dashed=1;dashPattern=5 5;" target="vault" value="obtiene">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_secret_vault_a" connectable="0" parent="e_secret_vault" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;fontStyle=1;fontColor=#253D50;labelBackgroundColor=#FFFFFF;" value="1" vertex="1">
+          <mxGeometry relative="1" x="-0.88" as="geometry">
+            <mxPoint y="-11" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_secret_vault_b" connectable="0" parent="e_secret_vault" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;fontStyle=1;fontColor=#253D50;labelBackgroundColor=#FFFFFF;" value="1" vertex="1">
+          <mxGeometry relative="1" x="0.88" as="geometry">
+            <mxPoint y="11" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_target_services" edge="1" parent="1" source="target" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#718E95;strokeWidth=1.2;fontSize=12;fontColor=#34485C;labelBackgroundColor=#FFFFFF;endArrow=open;startArrow=none;startFill=0;dashed=1;dashPattern=5 5;" target="backends" value="invoca">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_target_services_a" connectable="0" parent="e_target_services" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;fontStyle=1;fontColor=#253D50;labelBackgroundColor=#FFFFFF;" value="1..*" vertex="1">
+          <mxGeometry relative="1" x="-0.88" as="geometry">
+            <mxPoint y="-11" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_target_services_b" connectable="0" parent="e_target_services" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;fontStyle=1;fontColor=#253D50;labelBackgroundColor=#FFFFFF;" value="4" vertex="1">
+          <mxGeometry relative="1" x="0.88" as="geometry">
+            <mxPoint y="11" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_resolver_adapters" edge="1" parent="1" source="resolver" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#718E95;strokeWidth=1.2;fontSize=12;fontColor=#34485C;labelBackgroundColor=#FFFFFF;endArrow=open;startArrow=none;startFill=0;dashed=1;dashPattern=5 5;" target="orders" value="consume">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_resolver_adapters_a" connectable="0" parent="e_resolver_adapters" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;fontStyle=1;fontColor=#253D50;labelBackgroundColor=#FFFFFF;" value="1" vertex="1">
+          <mxGeometry relative="1" x="-0.88" as="geometry">
+            <mxPoint y="-11" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_resolver_adapters_b" connectable="0" parent="e_resolver_adapters" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;fontStyle=1;fontColor=#253D50;labelBackgroundColor=#FFFFFF;" value="2" vertex="1">
+          <mxGeometry relative="1" x="0.88" as="geometry">
+            <mxPoint y="11" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="legendtitle" parent="1" style="text;html=1;whiteSpace=wrap;rounded=0;fillColor=none;strokeColor=none;fontColor=#294B66;fontSize=16;fontStyle=1;align=left;verticalAlign=middle;" value="LÍMITES DE CONFIANZA" vertex="1">
+          <mxGeometry height="27" width="430" x="75" y="1360" as="geometry" />
+        </mxCell>
+        <mxCell id="legend" parent="1" style="text;html=1;whiteSpace=wrap;rounded=0;fillColor=none;strokeColor=none;fontColor=#294B66;fontSize=13;fontStyle=0;align=left;verticalAlign=middle;" value="&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;- Navegador → ApiGateway: autenticación mediante token Bearer.&lt;/div&gt;&lt;div&gt;-ApiGateway → AuthService: introspección del token mediante una credencial interna.&lt;/div&gt;&lt;div&gt;- ApiGateway → servicios privados: propagación de identidad validada y credencial de servicio.&lt;/div&gt;&lt;div&gt;- ApiGateway → GraphQLGateway: comunicación protegida mediante un secreto exclusivo.&lt;/div&gt;&lt;div&gt;- GraphQLGateway → Orders/Inventory: consultas de lectura mediante contratos internos.&lt;/div&gt;&lt;div&gt;- Clases y componentes: representan responsabilidades lógicas de la arquitectura, no necesariamente clases físicas implementadas en Python o JavaScript.&lt;/div&gt;&lt;div&gt;-Administrador de secretos: ejecutado mediante Vault en un entorno local de desarrollo.&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="180" width="2090" x="75" y="1410" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

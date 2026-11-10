@@ -1,0 +1,172 @@
+<mxfile host="app.diagrams.net" agent="TokyoNoodles">
+  <diagram id="Modelo_de_dominio_y_servicios" name="Modelo de dominio y servicios">
+    <mxGraphModel dx="1241" dy="643" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2250" pageHeight="1640" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="ttl" parent="1" style="text;html=1;whiteSpace=wrap;rounded=0;fillColor=none;strokeColor=none;fontColor=#294B66;fontSize=27;fontStyle=1;align=left;verticalAlign=middle;" value="TOKYO NOODLES | Modelo UML de dominio y servicios" vertex="1">
+          <mxGeometry height="52" width="1900" x="60" y="25" as="geometry" />
+        </mxCell>
+        <mxCell id="sub" parent="1" style="text;html=1;whiteSpace=wrap;rounded=0;fillColor=none;strokeColor=none;fontColor=#294B66;fontSize=15;fontStyle=0;align=left;verticalAlign=middle;" value="Entidades persistentes, contratos de servicio y multiplicidades de negocio" vertex="1">
+          <mxGeometry height="36" width="1990" x="60" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="svc" parent="1" style="text;html=1;whiteSpace=wrap;rounded=0;fillColor=none;strokeColor=none;fontColor=#294B66;fontSize=19;fontStyle=1;align=left;verticalAlign=middle;" value="SERVICIOS DEL BACKEND" vertex="1">
+          <mxGeometry height="35" width="850" x="75" y="147" as="geometry" />
+        </mxCell>
+        <mxCell id="invsvc" parent="1" style="shape=rectangle;rounded=1;arcSize=7;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacingTop=14;spacingLeft=16;spacingRight=10;spacingBottom=12;fillColor=#EAF4ED;strokeColor=#28754B;strokeWidth=1.5;fontColor=#273D4C;fontSize=14;overflow=fill;" value="&lt;div style=&quot;font-size: 17px; font-weight: bold; color: rgb(40, 117, 75); margin-bottom: 7px;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 17px; font-weight: bold; color: rgb(40, 117, 75); margin-bottom: 7px;&quot;&gt;&lt;span style=&quot;color: light-dark(rgb(40, 117, 75), rgb(104, 170, 134)); background-color: transparent;&quot;&gt;«service» InventoryService&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 12px; color: rgb(70, 81, 92); line-height: 1.55;&quot;&gt;+ listarProductos(available): Producto[]&lt;br&gt;+ consultarProducto(id): Producto&lt;br&gt;+ crearProducto(datos): Producto&lt;br&gt;+ modificarProducto(id, datos): Producto&lt;br&gt;+ desactivarProducto(id): Resultado&lt;/div&gt;" vertex="1">
+          <mxGeometry height="230" width="330" x="65" y="205" as="geometry" />
+        </mxCell>
+        <mxCell id="clisvc" parent="1" style="shape=rectangle;rounded=1;arcSize=7;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacingTop=14;spacingLeft=16;spacingRight=10;spacingBottom=12;fillColor=#EAF4ED;strokeColor=#28754B;strokeWidth=1.5;fontColor=#273D4C;fontSize=14;overflow=fill;" value="&lt;div style=&quot;font-size: 17px; font-weight: bold; color: rgb(40, 117, 75); margin-bottom: 7px;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 17px; font-weight: bold; color: rgb(40, 117, 75); margin-bottom: 7px;&quot;&gt;«service» ClientsService&lt;/div&gt;&lt;div style=&quot;font-size: 12px; color: rgb(70, 81, 92); line-height: 1.55;&quot;&gt;+ listarClientes(): Cliente[]&lt;br&gt;+ consultarCliente(id): Cliente&lt;br&gt;+ registrarCliente(datos): Cliente&lt;br&gt;+ modificarCliente(id, datos): Cliente&lt;br&gt;+ desactivarCliente(id): Resultado&lt;/div&gt;" vertex="1">
+          <mxGeometry height="230" width="330" x="420" y="205" as="geometry" />
+        </mxCell>
+        <mxCell id="ordsvc" parent="1" style="shape=rectangle;rounded=1;arcSize=7;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacingTop=14;spacingLeft=16;spacingRight=10;spacingBottom=12;fillColor=#EAF4ED;strokeColor=#28754B;strokeWidth=1.5;fontColor=#273D4C;fontSize=14;overflow=fill;" value="&lt;div style=&quot;font-size: 17px; font-weight: bold; color: rgb(40, 117, 75); margin-bottom: 7px;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 17px; font-weight: bold; color: rgb(40, 117, 75); margin-bottom: 7px;&quot;&gt;«service» OrdersService&lt;/div&gt;&lt;div style=&quot;font-size: 12px; color: rgb(70, 81, 92); line-height: 1.55;&quot;&gt;+ crearPedido(datos): Pedido&lt;br&gt;+ listarPedidos(): Pedido[]&lt;br&gt;+ consultarPedido(id): Pedido&lt;br&gt;+ anularPedido(id, motivo): Pedido&lt;br&gt;+ confirmarPago(id, ref): Pedido&lt;br&gt;+ cambiarEstado(id, estado): Pedido&lt;/div&gt;" vertex="1">
+          <mxGeometry height="230" width="330" x="775" y="205" as="geometry" />
+        </mxCell>
+        <mxCell id="paysvc" parent="1" style="shape=rectangle;rounded=1;arcSize=7;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacingTop=14;spacingLeft=16;spacingRight=10;spacingBottom=12;fillColor=#EAF4ED;strokeColor=#28754B;strokeWidth=1.5;fontColor=#273D4C;fontSize=14;overflow=fill;" value="&lt;div style=&quot;font-size: 17px; font-weight: bold; color: rgb(40, 117, 75); margin-bottom: 7px;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 17px; font-weight: bold; color: rgb(40, 117, 75); margin-bottom: 7px;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 17px; font-weight: bold; color: rgb(40, 117, 75); margin-bottom: 7px;&quot;&gt;«service» PaymentsService&lt;/div&gt;&lt;div style=&quot;font-size: 12px; color: rgb(70, 81, 92); line-height: 1.55;&quot;&gt;+ iniciarPago(orderId): Pago&lt;br&gt;+ consultarPago(id): Pago&lt;br&gt;+ confirmarPagoPrueba(id): Pago&lt;br&gt;Confirmación técnica protegida&lt;/div&gt;" vertex="1">
+          <mxGeometry height="230" width="330" x="1130" y="205" as="geometry" />
+        </mxCell>
+        <mxCell id="authsvc" parent="1" style="shape=rectangle;rounded=1;arcSize=7;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacingTop=14;spacingLeft=16;spacingRight=10;spacingBottom=12;fillColor=#EAF4ED;strokeColor=#28754B;strokeWidth=1.5;fontColor=#273D4C;fontSize=14;overflow=fill;" value="&lt;div style=&quot;font-size: 17px; font-weight: bold; color: rgb(40, 117, 75); margin-bottom: 7px;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 17px; font-weight: bold; color: rgb(40, 117, 75); margin-bottom: 7px;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 17px; font-weight: bold; color: rgb(40, 117, 75); margin-bottom: 7px;&quot;&gt;«service» AuthService&lt;/div&gt;&lt;div style=&quot;font-size: 12px; color: rgb(70, 81, 92); line-height: 1.55;&quot;&gt;+ registrarUsuario(datos): UsuarioAuth&lt;br&gt;+ iniciarSesion(datos): Token&lt;br&gt;+ introspectar(token): Identidad&lt;br&gt;+ cerrarSesion(token): Resultado&lt;/div&gt;" vertex="1">
+          <mxGeometry height="230" width="330" x="1485" y="205" as="geometry" />
+        </mxCell>
+        <mxCell id="mod" parent="1" style="text;html=1;whiteSpace=wrap;rounded=0;fillColor=none;strokeColor=none;fontColor=#294B66;fontSize=19;fontStyle=1;align=left;verticalAlign=middle;" value="MODELO DEL DOMINIO" vertex="1">
+          <mxGeometry height="34" width="850" x="75" y="485" as="geometry" />
+        </mxCell>
+        <mxCell id="authuser" parent="1" style="shape=rectangle;rounded=1;arcSize=7;whiteSpace=wrap;html=1;align=center;verticalAlign=top;spacingTop=14;spacingLeft=16;spacingRight=10;spacingBottom=12;fillColor=#F3F7FA;strokeColor=#294B66;strokeWidth=1.5;fontColor=#273D4C;fontSize=14;overflow=fill;" value="&lt;div style=&quot;font-size: 17px; font-weight: bold; color: rgb(41, 75, 102); margin-bottom: 7px;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 17px; font-weight: bold; color: rgb(41, 75, 102); margin-bottom: 7px;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 17px; font-weight: bold; color: rgb(41, 75, 102); margin-bottom: 7px;&quot;&gt;UsuarioAuth&lt;/div&gt;&lt;div style=&quot;font-size: 12px; color: rgb(70, 81, 92); line-height: 1.55;&quot;&gt;user_id: String&lt;br&gt;username: String&lt;br&gt;roles: String[]&lt;br&gt;password_hash: String&lt;br&gt;salt: String&lt;br&gt;active: Boolean&lt;/div&gt;" vertex="1">
+          <mxGeometry height="250" width="300" x="65" y="550" as="geometry" />
+        </mxCell>
+        <mxCell id="client" parent="1" style="shape=rectangle;rounded=1;arcSize=7;whiteSpace=wrap;html=1;align=center;verticalAlign=top;spacingTop=14;spacingLeft=16;spacingRight=10;spacingBottom=12;fillColor=#F3F7FA;strokeColor=#294B66;strokeWidth=1.5;fontColor=#273D4C;fontSize=14;overflow=fill;" value="&lt;div style=&quot;font-size: 17px; font-weight: bold; color: rgb(41, 75, 102); margin-bottom: 7px;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 17px; font-weight: bold; color: rgb(41, 75, 102); margin-bottom: 7px;&quot;&gt;&lt;span style=&quot;color: light-dark(rgb(41, 75, 102), rgb(153, 182, 206)); background-color: transparent;&quot;&gt;Cliente&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 12px; color: rgb(70, 81, 92); line-height: 1.55;&quot;&gt;id: String&lt;br&gt;run: String&lt;br&gt;nombre: String&lt;br&gt;correo: String&lt;br&gt;telefono: String&lt;br&gt;direccion: String&lt;br&gt;comuna, provincia, region: String&lt;br&gt;fecha_nacimiento: Date&lt;br&gt;activo: Boolean&lt;br&gt;correo_verificado: Boolean&lt;/div&gt;" vertex="1">
+          <mxGeometry height="300" width="320" x="450" y="550" as="geometry" />
+        </mxCell>
+        <mxCell id="order" parent="1" style="shape=rectangle;rounded=1;arcSize=7;whiteSpace=wrap;html=1;align=center;verticalAlign=top;spacingTop=14;spacingLeft=16;spacingRight=10;spacingBottom=12;fillColor=#F3F7FA;strokeColor=#294B66;strokeWidth=1.5;fontColor=#273D4C;fontSize=14;overflow=fill;" value="&lt;div style=&quot;font-size: 17px; font-weight: bold; color: rgb(41, 75, 102); margin-bottom: 7px;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 17px; font-weight: bold; color: rgb(41, 75, 102); margin-bottom: 7px;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 17px; font-weight: bold; color: rgb(41, 75, 102); margin-bottom: 7px;&quot;&gt;Pedido&lt;/div&gt;&lt;div style=&quot;font-size: 12px; color: rgb(70, 81, 92); line-height: 1.55;&quot;&gt;id: String&lt;br&gt;client_id: String&lt;br&gt;total: Integer&lt;br&gt;modalidad: String&lt;br&gt;direccion: String?&lt;br&gt;estado: String&lt;br&gt;fecha: DateTime&lt;br&gt;referencia_pago: String?&lt;br&gt;motivo_anulacion: String?&lt;/div&gt;" vertex="1">
+          <mxGeometry height="305" width="315" x="855" y="550" as="geometry" />
+        </mxCell>
+        <mxCell id="payment" parent="1" style="shape=rectangle;rounded=1;arcSize=7;whiteSpace=wrap;html=1;align=center;verticalAlign=top;spacingTop=14;spacingLeft=16;spacingRight=10;spacingBottom=12;fillColor=#F3F7FA;strokeColor=#294B66;strokeWidth=1.5;fontColor=#273D4C;fontSize=14;overflow=fill;" value="&lt;div style=&quot;font-size: 17px; font-weight: bold; color: rgb(41, 75, 102); margin-bottom: 7px;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 17px; font-weight: bold; color: rgb(41, 75, 102); margin-bottom: 7px;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 17px; font-weight: bold; color: rgb(41, 75, 102); margin-bottom: 7px;&quot;&gt;Pago&lt;/div&gt;&lt;div style=&quot;font-size: 12px; color: rgb(70, 81, 92); line-height: 1.55;&quot;&gt;id: String&lt;br&gt;order_id: String&lt;br&gt;client_id: String&lt;br&gt;monto: Integer&lt;br&gt;estado: String&lt;br&gt;fecha: DateTime&lt;br&gt;confirmado_en: DateTime?&lt;/div&gt;" vertex="1">
+          <mxGeometry height="280" width="290" x="1280" y="550" as="geometry" />
+        </mxCell>
+        <mxCell id="product" parent="1" style="shape=rectangle;rounded=1;arcSize=7;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacingTop=14;spacingLeft=16;spacingRight=10;spacingBottom=12;fillColor=#F3F7FA;strokeColor=#294B66;strokeWidth=1.5;fontColor=#273D4C;fontSize=14;overflow=fill;labelPosition=center;verticalLabelPosition=middle;" value="&lt;div style=&quot;font-size: 17px; font-weight: bold; color: rgb(41, 75, 102); margin-bottom: 7px;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 17px; font-weight: bold; color: rgb(41, 75, 102); margin-bottom: 7px;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 17px; font-weight: bold; color: rgb(41, 75, 102); margin-bottom: 7px;&quot;&gt;Producto&lt;/div&gt;&lt;div style=&quot;font-size: 12px; color: rgb(70, 81, 92); line-height: 1.55;&quot;&gt;id: String&lt;br&gt;nombre: String&lt;br&gt;descripcion: String&lt;br&gt;precio: Integer&lt;br&gt;imagen: String&lt;br&gt;categoria: String&lt;br&gt;available: Boolean&lt;/div&gt;" vertex="1">
+          <mxGeometry height="280" width="320" x="1690" y="550" as="geometry" />
+        </mxCell>
+        <mxCell id="session" parent="1" style="shape=rectangle;rounded=1;arcSize=7;whiteSpace=wrap;html=1;align=center;verticalAlign=top;spacingTop=14;spacingLeft=16;spacingRight=10;spacingBottom=12;fillColor=#F3F7FA;strokeColor=#294B66;strokeWidth=1.5;fontColor=#273D4C;fontSize=14;overflow=fill;" value="&lt;div style=&quot;font-size: 17px; font-weight: bold; color: rgb(41, 75, 102); margin-bottom: 7px;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 17px; font-weight: bold; color: rgb(41, 75, 102); margin-bottom: 7px;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 17px; font-weight: bold; color: rgb(41, 75, 102); margin-bottom: 7px;&quot;&gt;Sesion&lt;/div&gt;&lt;div style=&quot;font-size: 12px; color: rgb(70, 81, 92); line-height: 1.55;&quot;&gt;token_hash: String&lt;br&gt;user_id: String&lt;br&gt;username: String&lt;br&gt;roles: String[]&lt;br&gt;expires_at: DateTime&lt;/div&gt;" vertex="1">
+          <mxGeometry height="225" width="300" x="75" y="1030" as="geometry" />
+        </mxCell>
+        <mxCell id="item" parent="1" style="shape=rectangle;rounded=1;arcSize=7;whiteSpace=wrap;html=1;align=center;verticalAlign=top;spacingTop=14;spacingLeft=16;spacingRight=10;spacingBottom=12;fillColor=#F3F7FA;strokeColor=#294B66;strokeWidth=1.5;fontColor=#273D4C;fontSize=14;overflow=fill;" value="&lt;div style=&quot;font-size: 17px; font-weight: bold; color: rgb(41, 75, 102); margin-bottom: 7px;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 17px; font-weight: bold; color: rgb(41, 75, 102); margin-bottom: 7px;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 17px; font-weight: bold; color: rgb(41, 75, 102); margin-bottom: 7px;&quot;&gt;DetallePedido&lt;/div&gt;&lt;div style=&quot;font-size: 12px; color: rgb(70, 81, 92); line-height: 1.55;&quot;&gt;product_id: String&lt;br&gt;nombre: String&lt;br&gt;cantidad: Integer&lt;br&gt;precio_unitario: Integer&lt;br&gt;subtotal: Integer&lt;br&gt;Precio histórico conservado&lt;/div&gt;" vertex="1">
+          <mxGeometry height="245" width="350" x="900" y="1045" as="geometry" />
+        </mxCell>
+        <mxCell id="dep1" edge="1" parent="1" source="invsvc" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#718E95;strokeWidth=1.2;fontSize=12;fontColor=#34485C;labelBackgroundColor=#FFFFFF;endArrow=open;startArrow=none;startFill=0;dashed=1;dashPattern=5 5;" target="product" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="dep2" edge="1" parent="1" source="clisvc" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#718E95;strokeWidth=1.2;fontSize=12;fontColor=#34485C;labelBackgroundColor=#FFFFFF;endArrow=open;startArrow=none;startFill=0;dashed=1;dashPattern=5 5;" target="client" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="dep3" edge="1" parent="1" source="ordsvc" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#718E95;strokeWidth=1.2;fontSize=12;fontColor=#34485C;labelBackgroundColor=#FFFFFF;endArrow=open;startArrow=none;startFill=0;dashed=1;dashPattern=5 5;" target="order" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="dep4" edge="1" parent="1" source="paysvc" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#718E95;strokeWidth=1.2;fontSize=12;fontColor=#34485C;labelBackgroundColor=#FFFFFF;endArrow=open;startArrow=none;startFill=0;dashed=1;dashPattern=5 5;" target="payment" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="dep5" edge="1" parent="1" source="authsvc" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#718E95;strokeWidth=1.2;fontSize=12;fontColor=#34485C;labelBackgroundColor=#FFFFFF;endArrow=open;startArrow=none;startFill=0;dashed=1;dashPattern=5 5;" target="authuser" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Vo8UePHw743EYdzzHZ1l-2" connectable="0" parent="dep5" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];inheritText=1;fontSize=12;fontColor=#34485C;labelBackgroundColor=#FFFFFF;" value="Text" vertex="1">
+          <mxGeometry relative="1" x="0.624" y="-11" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="assoc_user_session" edge="1" parent="1" source="authuser" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#547183;strokeWidth=1.8;fontSize=12;fontColor=#34485C;labelBackgroundColor=#FFFFFF;endArrow=none;startArrow=none;startFill=0;" target="session" value="sesiones">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="assoc_user_session_a" connectable="0" parent="assoc_user_session" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;fontStyle=1;fontColor=#253D50;labelBackgroundColor=#FFFFFF;" value="1" vertex="1">
+          <mxGeometry relative="1" x="-0.88" as="geometry">
+            <mxPoint y="-11" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="assoc_user_session_b" connectable="0" parent="assoc_user_session" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;fontStyle=1;fontColor=#253D50;labelBackgroundColor=#FFFFFF;" value="0..*" vertex="1">
+          <mxGeometry relative="1" x="0.88" as="geometry">
+            <mxPoint y="11" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="assoc_client_order" edge="1" parent="1" source="client" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#547183;strokeWidth=1.8;fontSize=12;fontColor=#34485C;labelBackgroundColor=#FFFFFF;endArrow=none;startArrow=none;startFill=0;" target="order" value="pedidos">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="assoc_client_order_a" connectable="0" parent="assoc_client_order" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;fontStyle=1;fontColor=#253D50;labelBackgroundColor=#FFFFFF;" value="1" vertex="1">
+          <mxGeometry relative="1" x="-0.88" as="geometry">
+            <mxPoint y="-11" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="assoc_client_order_b" connectable="0" parent="assoc_client_order" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;fontStyle=1;fontColor=#253D50;labelBackgroundColor=#FFFFFF;" value="0..*" vertex="1">
+          <mxGeometry relative="1" x="0.88" as="geometry">
+            <mxPoint y="11" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="assoc_order_payment" edge="1" parent="1" source="order" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#547183;strokeWidth=1.8;fontSize=12;fontColor=#34485C;labelBackgroundColor=#FFFFFF;endArrow=none;startArrow=none;startFill=0;" target="payment" value="pago">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="assoc_order_payment_a" connectable="0" parent="assoc_order_payment" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;fontStyle=1;fontColor=#253D50;labelBackgroundColor=#FFFFFF;" value="1" vertex="1">
+          <mxGeometry relative="1" x="-0.88" as="geometry">
+            <mxPoint y="-11" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="assoc_order_payment_b" connectable="0" parent="assoc_order_payment" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;fontStyle=1;fontColor=#253D50;labelBackgroundColor=#FFFFFF;" value="0..1" vertex="1">
+          <mxGeometry relative="1" x="0.88" as="geometry">
+            <mxPoint y="11" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="assoc_order_item" edge="1" parent="1" source="order" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#476578;strokeWidth=1.8;fontSize=12;fontColor=#34485C;labelBackgroundColor=#FFFFFF;endArrow=none;startArrow=diamond;startFill=0;" target="item" value="contiene">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="assoc_order_item_a" connectable="0" parent="assoc_order_item" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;fontStyle=1;fontColor=#253D50;labelBackgroundColor=#FFFFFF;" value="1" vertex="1">
+          <mxGeometry relative="1" x="-0.88" as="geometry">
+            <mxPoint y="-11" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="assoc_order_item_b" connectable="0" parent="assoc_order_item" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;fontStyle=1;fontColor=#253D50;labelBackgroundColor=#FFFFFF;" value="1..*" vertex="1">
+          <mxGeometry relative="1" x="0.88" as="geometry">
+            <mxPoint y="11" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="assoc_product_item" edge="1" parent="1" source="product" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#547183;strokeWidth=1.8;fontSize=12;fontColor=#34485C;labelBackgroundColor=#FFFFFF;endArrow=none;startArrow=none;startFill=0;" target="item" value="referencia">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1830" y="965" />
+              <mxPoint x="1360" y="965" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="assoc_product_item_a" connectable="0" parent="assoc_product_item" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;fontStyle=1;fontColor=#253D50;labelBackgroundColor=#FFFFFF;" value="1" vertex="1">
+          <mxGeometry relative="1" x="-0.88" as="geometry">
+            <mxPoint y="-11" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="assoc_product_item_b" connectable="0" parent="assoc_product_item" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;fontStyle=1;fontColor=#253D50;labelBackgroundColor=#FFFFFF;" value="0..*" vertex="1">
+          <mxGeometry relative="1" x="0.88" as="geometry">
+            <mxPoint y="11" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="assoc_client_payment" edge="1" parent="1" source="client" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#547183;strokeWidth=1.8;fontSize=12;fontColor=#34485C;labelBackgroundColor=#FFFFFF;endArrow=none;startArrow=none;startFill=0;" target="payment" value="realiza">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="715" y="940" />
+              <mxPoint x="1420" y="940" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="assoc_client_payment_a" connectable="0" parent="assoc_client_payment" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;fontStyle=1;fontColor=#253D50;labelBackgroundColor=#FFFFFF;" value="1" vertex="1">
+          <mxGeometry relative="1" x="-0.88" as="geometry">
+            <mxPoint y="-11" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="assoc_client_payment_b" connectable="0" parent="assoc_client_payment" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;fontStyle=1;fontColor=#253D50;labelBackgroundColor=#FFFFFF;" value="0..*" vertex="1">
+          <mxGeometry relative="1" x="0.88" as="geometry">
+            <mxPoint y="11" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="legendtitle" parent="1" style="text;html=1;whiteSpace=wrap;rounded=0;fillColor=none;strokeColor=none;fontColor=#294B66;fontSize=16;fontStyle=1;align=left;verticalAlign=middle;" value="NOTACIÓN" vertex="1">
+          <mxGeometry height="27" width="340" x="70" y="1360" as="geometry" />
+        </mxCell>
+        <mxCell id="legend" parent="1" style="text;html=1;whiteSpace=wrap;rounded=0;fillColor=none;strokeColor=none;fontColor=#294B66;fontSize=13;fontStyle=0;align=left;verticalAlign=middle;" value="&lt;pre dir=&quot;ltr&quot;&gt;&lt;code&gt;- Línea continua: asociación entre registros.&lt;br/&gt;- Rombo: composición de los ítems del pedido.&lt;br/&gt;- Línea discontinua: dependencia del servicio.&lt;br/&gt;- Multiplicidades: aparecen en ambos extremos de las relaciones (1, 0..1, 0.., 1..).&lt;br/&gt;- Servicios: representan contratos lógicos, no clases Python instanciadas.&lt;/code&gt;&lt;/pre&gt;" vertex="1">
+          <mxGeometry height="100" width="2050" x="70" y="1405" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
