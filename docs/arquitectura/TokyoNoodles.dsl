@@ -18,12 +18,12 @@ workspace "Tokyo Noodles" "Arquitectura C4 de la plataforma comercial Tokyo Nood
             tags "SistemaPrincipal"
 
 
-            frontend = container "Frontend responsivo" "Interfaz web de catalogo, promociones, carrito y acceso de usuarios. Se conserva como componente independiente del backend." "PHP, HTML, CSS y JavaScript" {
+            frontend = container "Frontend responsivo" "Interfaz web de catálogo, promociones, login y carrito; consume el API Gateway mediante fetch, Bearer y X-Operacion y codigo_compra en JSON." "PHP, HTML, CSS y JavaScript" {
                 tags "Frontend"
             }
 
 
-            gateway = container "API Gateway" "Punto de entrada HTTP en el puerto 8000. Gestiona autenticacion, rutas autorizadas, secretos de integracion y reenvio de solicitudes." "Python, FastAPI y HTTPX" {
+            gateway = container "API Gateway" "Punto de entrada HTTP en el puerto 8000. Gestiona CORS local, catálogo público mediado, autenticación, rutas autorizadas, secretos, trazabilidad y reenvío de solicitudes." "Python, FastAPI y HTTPX" {
                 tags "Gateway"
 
                 entrada = component "Entrada HTTP" "Recibe solicitudes REST, autenticacion y consultas GraphQL mediante rutas externas definidas." "FastAPI" {
@@ -98,20 +98,28 @@ workspace "Tokyo Noodles" "Arquitectura C4 de la plataforma comercial Tokyo Nood
         }
 
 
-        broker = softwareSystem "ActiveMQ" "Broker utilizado por los scripts independientes de mensajeria STOMP." {
+        correoHttp = softwareSystem "API de correo opcional" "Acepta HTTP POST con cuerpo JSON; sin configurar se registra DEMO en MongoDB" {
+            tags "Infraestructura"
+        }
+
+        broker = softwareSystem "ActiveMQ" "Broker utilizado por los mensajeria directa posterior a pago STOMP." {
             tags "Infraestructura"
         }
 
 
-        visitante -> tokyo.frontend "Consulta las pantallas del sitio" "Navegador web"
+        visitante -> tokyo.frontend "Consulta el catálogo, menú y promociones" "Navegador web"
 
-        cliente -> tokyo.gateway "Realiza solicitudes autenticadas con token Bearer" "HTTP/JSON"
+        tokyo.frontend -> tokyo.gateway "Consulta catálogo, login, pedidos, pagos y resumen GraphQL" "HTTP/JSON + Bearer"
+
+        cliente -> tokyo.frontend "Navega, inicia sesión y realiza pedidos" "Navegador web"
+
+        cliente -> tokyo.gateway "Puede ejecutar verificaciones HTTP autenticadas" "HTTP/JSON"
 
         administrador -> tokyo.gateway "Ejecuta operaciones de administracion autorizadas" "HTTP/JSON"
 
         operador -> tokyo.gateway "Realiza pruebas y verifica endpoints" "HTTP/JSON"
 
-        operador -> tokyo.mensajeria "Ejecuta scripts de mensajeria" "Terminal"
+        operador -> tokyo.mensajeria "Observa logs y estado STOMP" "Terminal"
 
 
         tokyo.gateway -> vault "Obtiene secretos de integracion en KV v2" "HTTP"
@@ -128,6 +136,9 @@ workspace "Tokyo Noodles" "Arquitectura C4 de la plataforma comercial Tokyo Nood
 
         tokyo.gateway -> tokyo.graphql "Reenvia la consulta resumenPedido con identidad validada y secreto de servicio" "HTTP/GraphQL"
 
+
+        tokyo.clients -> correoHttp "Solicita envío de código por HTTP si configurado" "HTTP/JSON"
+        tokyo.payments -> correoHttp "Solicita aviso de comprobante por HTTP si configurado" "HTTP/JSON"
 
         tokyo.orders -> tokyo.inventory "Obtiene productos, precios y disponibilidad para crear pedidos" "HTTP/JSON"
 
@@ -151,7 +162,9 @@ workspace "Tokyo Noodles" "Arquitectura C4 de la plataforma comercial Tokyo Nood
         tokyo.payments -> tokyo.mongo "Lee y modifica solicitudes de pago" "Motor"
 
 
-        tokyo.mensajeria -> broker "Publica y consume mensajes de ejemplo" "STOMP"
+        tokyo.orders -> broker "Publica order.paid después de pago" "STOMP"
+        broker -> tokyo.mensajeria "Entrega mensaje al consumidor" "STOMP"
+        tokyo.mensajeria -> tokyo.mongo "Persiste una recepción por event_id" "Motor"
 
 
         tokyo.gateway.entrada -> tokyo.gateway.autenticacion "Deriva solicitudes que necesitan identidad"

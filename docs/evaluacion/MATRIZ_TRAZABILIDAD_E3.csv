@@ -1,0 +1,14 @@
+requisito,flujo,pantalla,rol,servicios,criterio,prueba,evidencia_planeada,estado,RUN,observacion
+R01,F01,catalogo,visitante,"Gateway,Inventory,Mongo",CA01,P01,E01+E02+E05,NO EJECUTADA,,A completar con RUN y evidencia real
+R02,F02,registro,visitante,"Gateway,Auth,Clients,Mongo",CA02,P15,E01+E03+E05,NO EJECUTADA,,A completar con RUN y evidencia real
+R03,F03,login,usuario,"Gateway,Auth,Vault",CA03,"P02,P18,P19",E01+E02+E03,NO EJECUTADA,,A completar con RUN y evidencia real
+R04,F04,carrito,usuario,"Gateway,Orders,Clients,Inventory,Mongo",CA04,"P07,P09,P23",E01+E04+E05,NO EJECUTADA,,A completar con RUN y evidencia real
+R05,F04,carrito,usuario,"Orders,Mongo",CA05,"P08,P20-P22,P39",E06+E05,NO EJECUTADA,,A completar con RUN y evidencia real
+R06,F05,gestion,admin,"Payments,Orders,Mongo",CA06,"P10-P11,P24-P26,P31-P32",E04+E05,NO EJECUTADA,,A completar con RUN y evidencia real
+R07,F06,carrito,usuario,"Orders,Delivery",CA07,P27-P28,E01+E04,NO EJECUTADA,,A completar con RUN y evidencia real
+R08,F07,network+logs,usuario,"Gateway,Vault,Auth,Orders,Mongo",CA08,M01,E01+E02+E03+E04+E05,NO EJECUTADA,,A completar con RUN y evidencia real
+R09,F08,resumen GraphQL,usuario,"Gateway,GraphQL,Orders,Inventory",CA09,"P12,P29",E07,NO EJECUTADA,,A completar con RUN y evidencia real
+R10,F09,preparacion tras pago,"admin,staff","Orders,ActiveMQ,Consumer,Mongo",CA10,M02,E08+E05,NO EJECUTADA,,A completar con RUN y evidencia real
+R11,F10,verificar-correo,usuario,"Clients,Mongo,API HTTP opcional",CA11,M03,E11,NO EJECUTADA,,A completar con RUN y evidencia real
+R12,F11,comprobante/reporte,"admin,usuario","Orders,Mongo",CA12,P33-P34,E12+E05,NO EJECUTADA,,A completar con RUN y evidencia real
+R13,F12,responsive,"visitante,usuario","Frontend,Gateway",CA13,M04,E09+E10,NO EJECUTADA,,A completar con RUN y evidencia real

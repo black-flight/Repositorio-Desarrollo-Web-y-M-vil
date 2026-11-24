@@ -1,14 +1,20 @@
 import hashlib
+import logging
 import os
 import secrets
 from datetime import datetime, timedelta, timezone
 
-from fastapi import FastAPI, Header, HTTPException
+from fastapi import FastAPI, Header, HTTPException, Request
 from motor.motor_asyncio import AsyncIOMotorClient
 from pydantic import BaseModel, Field
 from pymongo.errors import DuplicateKeyError
 
+from backend.common.tracing import instalar_trazabilidad
+
+
 app = FastAPI(title="Tokyo Noodles - Auth Service")
+logger = logging.getLogger("tokyo_noodles.auth")
+instalar_trazabilidad(app, "auth-service")
 
 AUTH_INTROSPECTION_SECRET = os.getenv("AUTH_INTROSPECTION_SECRET")
 
@@ -85,7 +91,8 @@ async def inicializar():
     ejemplos = (
         ("ana", "USR-001", ["user"], "AUTH_PASSWORD_ANA"),
         ("pedro", "USR-002", ["user"], "AUTH_PASSWORD_PEDRO"),
-        ("ernesto", "USR-003", ["user", "admin"], "AUTH_PASSWORD_ERNESTO")
+        ("ernesto", "USR-003", ["user", "admin"], "AUTH_PASSWORD_ERNESTO"),
+        ("cocina", "USR-004", ["staff"], "AUTH_PASSWORD_COCINA")
     )
 
     for nombre, identificador, roles, variable in ejemplos:
@@ -111,7 +118,12 @@ async def inicializar():
 
 
 @app.post("/register", status_code=201)
-async def registro(datos: RegistroRequest):
+async def registro(
+    datos: RegistroRequest, request: Request,
+    x_gateway_auth_secret: str = Header(default="")
+):
+    if not secrets.compare_digest(x_gateway_auth_secret, AUTH_INTROSPECTION_SECRET):
+        raise HTTPException(status_code=403, detail="Registro permitido solo al Gateway")
     sal, clave_hash = crear_hash(datos.password)
 
     identificador = "USR-" + str(
@@ -140,7 +152,7 @@ async def registro(datos: RegistroRequest):
 
 
 @app.post("/login")
-async def login(datos: LoginRequest):
+async def login(datos: LoginRequest, request: Request):
     usuario = await usuarios_db.find_one({
         "username": datos.username
     })
@@ -150,6 +162,7 @@ async def login(datos: LoginRequest):
         or not usuario.get("active")
         or not clave_valida(datos.password, usuario)
     ):
+        logger.info("operacion_id=%s service=auth action=login outcome=denied", request.state.operacion_id)
         raise HTTPException(
             status_code=401,
             detail="Credenciales incorrectas"
@@ -171,6 +184,7 @@ async def login(datos: LoginRequest):
         "expires_at": vencimiento
     })
 
+    logger.info("operacion_id=%s service=auth action=login outcome=ok user_id=%s",request.state.operacion_id, usuario["user_id"])
     return {
         "access_token": token,
         "token_type": "bearer",
@@ -180,7 +194,7 @@ async def login(datos: LoginRequest):
 
 @app.post("/introspect")
 async def introspect(
-    datos: TokenRequest,
+    datos: TokenRequest, request: Request,
     x_gateway_auth_secret: str = Header(default="")
 ):
     if not secrets.compare_digest(
@@ -201,6 +215,7 @@ async def introspect(
     })
 
     if not sesion:
+        logger.info("operacion_id=%s service=auth action=introspect active=false",request.state.operacion_id)
         return {"active": False}
 
     if sesion["expires_at"] <= fecha_utc():
@@ -218,6 +233,7 @@ async def introspect(
     if not usuario:
         return {"active": False}
 
+    logger.info("operacion_id=%s service=auth action=introspect active=true user_id=%s", request.state.operacion_id,usuario["user_id"])
     return {
         "active": True,
         "user_id": usuario["user_id"],
@@ -245,3 +261,18 @@ def health():
         "status": "OK",
         "service": "Authentication Service"
     }
+
+@app.delete("/internal/registration/{user_id}")
+async def deshacer_registro(
+    user_id: str,
+    x_gateway_auth_secret: str = Header(default="")
+):
+    """Compensación al fallar Clients; nunca invocable por usuarios finales."""
+    if not secrets.compare_digest(x_gateway_auth_secret, AUTH_INTROSPECTION_SECRET):
+        raise HTTPException(status_code=403, detail="No autorizado")
+    usuario = await usuarios_db.find_one({"user_id": user_id})
+    if not usuario or usuario.get("roles") != ["user"]:
+        raise HTTPException(status_code=404, detail="Registro no disponible")
+    await sesiones_db.delete_many({"user_id": user_id})
+    await usuarios_db.delete_one({"user_id": user_id})
+    return {"rollback": True}

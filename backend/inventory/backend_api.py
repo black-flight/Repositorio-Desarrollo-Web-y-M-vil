@@ -1,11 +1,17 @@
 import os
+import logging
 import secrets
 
-from fastapi import Depends, FastAPI, Header, HTTPException
+from fastapi import Request, Depends, FastAPI, Header, HTTPException
 from motor.motor_asyncio import AsyncIOMotorClient
 from pydantic import BaseModel, Field
 
+from backend.common.tracing import instalar_trazabilidad
+
+
+logger = logging.getLogger("tokyo_noodles.inventory")
 app = FastAPI(title="Tokyo Noodles - Inventory")
+instalar_trazabilidad(app, "inventory")
 
 INTERNAL_GATEWAY_SECRET = os.getenv("INTERNAL_GATEWAY_SECRET")
 if not INTERNAL_GATEWAY_SECRET:
@@ -41,8 +47,10 @@ class Producto(BaseModel):
     available: bool = True
 
 
-def verificar_gateway(x_gateway_secret: str = Header(default="")):
-    if not secrets.compare_digest(x_gateway_secret, INTERNAL_GATEWAY_SECRET):
+def verificar_gateway(request: Request, x_gateway_secret: str = Header(default="")):
+    permitido = secrets.compare_digest(x_gateway_secret, INTERNAL_GATEWAY_SECRET)
+    logger.info("operacion_id=%s service=inventory secret_check=%s",request.state.operacion_id,"ok" if permitido else "rejected")
+    if not permitido:
         raise HTTPException(status_code=403, detail="Gateway no autorizado")
 
 

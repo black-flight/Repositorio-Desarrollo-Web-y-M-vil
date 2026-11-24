@@ -1,0 +1,57 @@
+{
+  "ejecucion": "c2a467bc-6abe-421c-bb2d-3e822aef60eb",
+  "fecha_utc": "2026-11-23T22:28:56.642672+00:00",
+  "tipo": "Comprobación de conectividad; NO prueba E2E de persistencia ni permisos",
+  "resultados": [
+    {
+      "id": "gateway",
+      "expected_http": [
+        200
+      ],
+      "observed_http": 200,
+      "ok": true,
+      "elapsed_ms": 436.6,
+      "operacion_id": "1e9271df-ca09-4777-bd1c-4ba759e3c9ce"
+    },
+    {
+      "id": "catalogo_publico",
+      "expected_http": [
+        200
+      ],
+      "observed_http": 200,
+      "ok": true,
+      "elapsed_ms": 1211.0,
+      "operacion_id": "497ca004-e928-4606-9bfb-f6032579f2ef"
+    },
+    {
+      "id": "frontend",
+      "expected_http": [
+        200
+      ],
+      "observed_http": 200,
+      "ok": true,
+      "elapsed_ms": 77.3,
+      "operacion_id": "70bbbc53-952f-4077-8fdd-a26d17402c3b"
+    },
+    {
+      "id": "verificacion_correo",
+      "expected_http": [
+        200
+      ],
+      "observed_http": 200,
+      "ok": true,
+      "elapsed_ms": 8.9,
+      "operacion_id": "11348e88-5ff4-40d7-a3cc-aeb350478917"
+    },
+    {
+      "id": "sin_sesion",
+      "expected_http": [
+        401
+      ],
+      "observed_http": 401,
+      "ok": true,
+      "elapsed_ms": 5.9,
+      "operacion_id": "9fc9f76b-7a9d-453b-b46c-cbcb7249428c"
+    }
+  ]
+}

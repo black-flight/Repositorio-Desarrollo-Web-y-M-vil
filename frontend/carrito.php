@@ -28,12 +28,14 @@
         src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js">
     </script>
 
+    <script src="api.js"></script>
     <script src="productos.js"></script>
+    <script src="integracion.js"></script>
 
 </head>
 
 
-<body onload="cargarCarrito(); actualizarContadorCarrito();">
+<body onload="cargarCatalogo(); actualizarContadorCarrito();">
 
 
 <!-- NAVBAR -->
@@ -147,7 +149,7 @@
 
     </div>
 
-</nav>
+</nav><div class="container d-flex gap-3 justify-content-center flex-wrap py-2" aria-label="Accesos de cuenta"><a href="registro.php">Registro</a><a href="mi-cuenta.php">Mi perfil</a><a href="mis-pedidos.php">Mis pedidos</a><a href="gestion.php">Gestión</a></div>
 
 
 <!-- BUSCADOR -->
@@ -173,6 +175,9 @@
 <!-- CARRITO -->
 
 <main class="container py-5">
+
+    <div id="estado-carrito" class="alert alert-info" role="status" aria-live="polite" hidden></div>
+    <section id="resultadoPedido" class="tarjeta-producto mb-4" aria-live="polite" hidden></section>
 
     <div class="carrito-contenedor">
 
@@ -308,6 +313,25 @@
                 <!-- DELIVERY -->
 
                 <div id="bloqueDelivery">
+                    <div class="alert alert-secondary mb-3" role="note">
+                        Cobertura: 3 km en línea recta desde la sucursal configurada.
+                        La dirección y el punto geográfico deben corresponder al mismo destino.
+                        Esta verificación NO calcula distancia por calles.
+                    </div>
+                    <div class="mb-3">
+                        <button type="button" class="btn btn-outline-secondary btn-sm" id="btnUbicacion">
+                            Usar mi ubicación como destino
+                        </button>
+                        <small id="ubicacionEstado" class="d-block mt-2" aria-live="polite">
+                            Permite ubicación o escribe latitud y longitud del domicilio.
+                        </small>
+                        <div class="row g-2 mt-2">
+                            <div class="col-sm-6"><label for="latitude" class="form-label">Latitud del destino</label>
+                                <input id="latitude" class="form-control" type="number" step="any" min="-90" max="90" placeholder="Ej. -33.51"></div>
+                            <div class="col-sm-6"><label for="longitude" class="form-label">Longitud del destino</label>
+                                <input id="longitude" class="form-control" type="number" step="any" min="-180" max="180" placeholder="Ej. -70.75"></div>
+                        </div>
+                    </div>
 
                     <div class="row g-3">
 
@@ -457,6 +481,7 @@
 
                 <button
                     type="button"
+                    id="btnConfirmarPedido"
                     class="btn-modal-principal"
                 >
                     Continuar

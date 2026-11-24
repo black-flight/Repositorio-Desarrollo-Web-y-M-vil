@@ -32,7 +32,9 @@
         src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js">
     </script>
 
+    <script src="api.js"></script>
     <script src="productos.js"></script>
+    <script src="integracion.js"></script>
 
 </head>
 
@@ -149,7 +151,7 @@
 
     </div>
 
-</nav>
+</nav><div class="container d-flex gap-3 justify-content-center flex-wrap py-2" aria-label="Accesos de cuenta"><a href="registro.php">Registro</a><a href="mi-cuenta.php">Mi perfil</a><a href="mis-pedidos.php">Mis pedidos</a><a href="gestion.php">Gestión</a></div>
 
 
 <div
@@ -181,7 +183,15 @@
         </h1>
 
 
-        <form>
+        <div id="estado-login" class="alert alert-info" role="status" aria-live="polite" hidden></div>
+        <div id="estado-sesion" class="alert alert-info" role="status" aria-live="polite" hidden></div>
+        <div class="text-center mb-3">
+            <button type="button" id="btnLogout" class="btn btn-outline-secondary" hidden>
+                Cerrar sesión
+            </button>
+        </div>
+
+        <form id="loginForm" autocomplete="on">
 
             <div class="mb-4">
 
@@ -189,7 +199,7 @@
                     for="usuario"
                     class="form-label fs-4"
                 >
-                    Nombre de usuario o correo electrónico principal
+                    Nombre de usuario
                 </label>
 
 
@@ -197,6 +207,9 @@
                     type="text"
                     class="form-control form-control-lg"
                     id="usuario"
+                    name="username"
+                    autocomplete="username"
+                    required
                 >
 
             </div>
@@ -216,6 +229,9 @@
                     type="password"
                     class="form-control form-control-lg"
                     id="password"
+                    name="password"
+                    autocomplete="current-password"
+                    required
                 >
 
             </div>
@@ -223,13 +239,9 @@
 
             <div class="text-end mb-5">
 
-                <a
-                    href="#"
-                    class="text-decoration-none"
-                    style="color: #da8442;"
-                >
-                    ¿Olvidó su contraseña?
-                </a>
+                <span class="text-muted small">
+                    La recuperación de contraseña no está habilitada en este prototipo.
+                </span>
 
             </div>
 
@@ -239,7 +251,8 @@
                 <div class="col-12 col-md-7">
 
                     <button
-                        type="button"
+                        type="submit"
+                        id="btnLogin"
                         class="btn btn-tokyo w-100 py-3"
                     >
                         Iniciar Sesión
@@ -256,14 +269,9 @@
                     ¿Aún no tiene una cuenta?
                 </span>
 
-
-                <a
-                    href="#"
-                    class="text-decoration-none ms-2"
-                    style="color: #da8442;"
-                >
-                    Regístrese ahora
-                </a>
+                <p class="text-muted small mt-2">
+                    <a href="registro.php" class="btn btn-outline-secondary">Crear una cuenta</a>
+                </p>
 
             </div>
 

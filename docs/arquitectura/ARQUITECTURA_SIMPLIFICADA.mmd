@@ -1,0 +1,26 @@
+flowchart LR
+  U[Frontend PHP JS Bootstrap] -->|REST + token| G[API Gateway FastAPI]
+  G -->|KV v2| V[Vault desarrollo]
+  G -->|X-Operacion + introspect| A[Auth Service]
+  G -->|REST privado| I[Inventory]
+  G -->|REST privado| C[Clients]
+  G -->|REST privado| O[Orders]
+  G -->|REST privado| P[Payments]
+  G -->|GraphQL privado| Q[Node Express GraphQL]
+  Q --> O
+  Q --> I
+  O -->|Consultar precio| I
+  O -->|Consultar perfil| C
+  P -->|Confirmar pago protegido| O
+  O -->|STOMP order.paid POST PAGO| B[ActiveMQ]
+  B -->|STOMP| S[Consumidor deduplicador]
+  A --> M[(MongoDB)]
+  I --> M
+  C --> M
+  O --> M
+  P --> M
+  S --> M
+  C -.->|HTTP REST opcional| E[API Correo]
+  P -.->|HTTP REST opcional| E
+  C -->|Si no hay API: DEMO sin entrega| M
+  P -->|Si no hay API: DEMO sin entrega| M
