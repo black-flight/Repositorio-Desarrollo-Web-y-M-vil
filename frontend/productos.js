@@ -1,101 +1,60 @@
-const responseAPI = {
-    "status": 200,
-    "message": "Productos Obtenidos",
-    "data": [
-
-        {
-            "id": "1",
-            "nombre": "Shio Ramen",
-            "descripcion": "Caldo ligero a base de almeja y pollo con aceite de camarón, chashu de cerdo, ajitama, wakame, nori, cebollín, sésamo y noodles.",
-            "precio": 13800,
-            "imagen": "img/shio.png",
-            "categoria": "ramen"
-        },
-
-        {
-            "id": "2",
-            "nombre": "Miso Ramen",
-            "descripcion": "Caldo consistente de miso, pollo y almeja, chashu de cerdo, ajitama, choclo, nori, cebollín, sésamo y noodles.",
-            "precio": 14200,
-            "imagen": "img/miso.png",
-            "categoria": "ramen"
-        },
-
-        {
-            "id": "3",
-            "nombre": "Tantan Ramen",
-            "descripcion": "Caldo de miso picante, pollo y almeja con sésamo, pulpa de cerdo molido picante, karaage, ajitama, nori y noodles.",
-            "precio": 14900,
-            "imagen": "img/tantan.png",
-            "categoria": "ramen"
-        },
-
-        {
-            "id": "4",
-            "nombre": "Veggie Miso Especial",
-            "descripcion": "Caldo de miso y verduras con aceite de hongos, tofu, shiitake grillado, choclo, kikurage, nori y fideos de la casa.",
-            "precio": 15510,
-            "imagen": "img/veggie-miso.png",
-            "categoria": "ramen"
-        },
-
-        {
-            "id": "5",
-            "nombre": "Coca Cola Zero",
-            "descripcion": "Coca Cola Zero",
-            "precio": 2900,
-            "imagen": "img/coca-zero.png",
-            "categoria": "barra"
-        },
-
-        {
-            "id": "6",
-            "nombre": "Aka Natsu",
-            "descripcion": "Syrup de betarraga, pulpa de maracuyá y jugo fresco de naranja en un mocktail dulce y cítrico.",
-            "precio": 7800,
-            "imagen": "img/aka-natsu.png",
-            "categoria": "barra"
-        },
-
-        {
-            "id": "7",
-            "nombre": "Natsu No Hikari",
-            "descripcion": "Cóctel refrescante con tamarindo, sake y pisco, equilibrado con goma y zumo de limón.",
-            "precio": 9900,
-            "imagen": "img/natsu-hikari.png",
-            "categoria": "barra"
-        },
-
-        {
-            "id": "8",
-            "nombre": "Soukai",
-            "descripcion": "Sake, vodka, kiwi, esferas de kiwi, pomelo, limón y syrup.",
-            "precio": 9400,
-            "imagen": "img/soukai.png",
-            "categoria": "barra"
-        },
-
-        {
-            "id": "9",
-            "nombre": "Tokyo Classic",
-            "descripcion": "Shio Ramen acompañado de una bebida clásica.",
-            "precio": 15500,
-            "imagen": "img/shio.png",
-            "categoria": "promocion"
-        },
-
-        {
-            "id": "10",
-            "nombre": "Tokyo Experience",
-            "descripcion": "Tantan Ramen acompañado de un Aka Natsu.",
-            "precio": 20500,
-            "imagen": "img/tantan.png",
-            "categoria": "promocion"
-        }
-
-    ]
+let responseAPI = {
+    status: 0,
+    message: "Catálogo pendiente de cargar",
+    data: []
 };
 
+
+async function cargarCatalogo() {
+    try {
+        const respuesta = await TokyoAPI.getCatalog();
+        responseAPI = {
+            status: 200,
+            message: "Productos obtenidos desde Inventory",
+            data: Array.isArray(respuesta.products) ? respuesta.products : []
+        };
+        cargarProductos();
+        cargarCarrito();
+        actualizarContadorCarrito();
+
+        const estado = document.getElementById("estado-catalogo");
+        if (estado) {
+            // El catalogo se muestra directamente; no exponer mensajes tecnicos al cliente.
+            estado.textContent = "";
+            estado.hidden = true;
+        }
+        const estadoCarrito = document.getElementById("estado-carrito");
+        if (estadoCarrito && estadoCarrito.textContent.startsWith("No fue posible cargar el catálogo:")) {
+            estadoCarrito.hidden = true;
+            estadoCarrito.textContent = "";
+        }
+        return responseAPI.data;
+    } catch (error) {
+        responseAPI = { status: 0, message: error.message, data: [] };
+        const estado = document.getElementById("estado-catalogo") ||
+            document.getElementById("estado-carrito");
+        if (estado) {
+            estado.textContent = "No pudimos cargar el menú. Actualiza la página e inténtalo de nuevo.";
+            estado.className = "alert alert-danger";
+            estado.hidden = false;
+        }
+        console.error("Error al cargar catálogo:", error);
+        return [];
+    }
+}
+
+
+function mostrarAviso(mensaje, tipo) {
+    const estado = document.getElementById("estado-carrito") ||
+        document.getElementById("estado-catalogo");
+    if (estado) {
+        estado.textContent = mensaje;
+        estado.className = "alert alert-" + (tipo || "info");
+        estado.hidden = false;
+        return;
+    }
+    console.info(mensaje);
+}
 
 function formatearPrecio(valor) {
 
@@ -133,6 +92,16 @@ function guardarCarrito(carrito) {
 
 function agregarProducto(id) {
 
+    const producto = buscarProducto(id);
+    if (!producto) {
+        mostrarAviso("El producto no está disponible en el catálogo del backend.", "warning");
+        return;
+    }
+    if (producto.available === false) {
+        mostrarAviso("Este producto está temporalmente no disponible.", "warning");
+        return;
+    }
+
     let carrito = obtenerCarrito();
 
     let encontrado = false;
@@ -162,7 +131,26 @@ function agregarProducto(id) {
 
 
     guardarCarrito(carrito);
+    confirmarAgregadoAlCarrito(producto.nombre);
 
+}
+
+function confirmarAgregadoAlCarrito(nombre) {
+    let aviso = document.getElementById("tn-toast-carrito");
+    if (!aviso) {
+        aviso = document.createElement("div");
+        aviso.id = "tn-toast-carrito";
+        aviso.className = "tn-toast-carrito";
+        aviso.setAttribute("role", "status");
+        aviso.setAttribute("aria-live", "polite");
+        document.body.appendChild(aviso);
+    }
+    aviso.textContent = nombre + " agregado a tu carrito";
+    aviso.hidden = false;
+    clearTimeout(confirmarAgregadoAlCarrito.temporizador);
+    confirmarAgregadoAlCarrito.temporizador = setTimeout(function () {
+        aviso.hidden = true;
+    }, 2600);
 }
 
 
@@ -206,13 +194,7 @@ function buscarProducto(id) {
 
 
     responseAPI.data.forEach((prod) => {
-
-        if (prod.id == id) {
-
-            productoEncontrado = prod;
-
-        }
-
+        if (String(prod.id) === String(id)) productoEncontrado = prod;
     });
 
 
@@ -269,14 +251,13 @@ function cargarProductos() {
         document.getElementById("productos-barra");
 
 
-    if (ramen == null || barra == null) {
-
-        return;
-
-    }
-
+    if (ramen == null || barra == null) return;
+    ramen.innerHTML = "";
+    barra.innerHTML = "";
 
     responseAPI.data.forEach((prod) => {
+
+        if (prod.available === false) return;
 
         if (
             prod.categoria != "ramen" &&
@@ -403,7 +384,8 @@ function cargarProductos() {
             "agregarProducto('" + prod.id + "')"
         );
 
-        boton.innerText = "+";
+        boton.innerText = "Agregar";
+        boton.setAttribute("aria-label", "Agregar " + prod.nombre + " al carrito");
 
 
         inferior.appendChild(precio);
@@ -448,12 +430,12 @@ function cargarCarrito() {
         document.getElementById("subtotal-carrito");
 
 
-    if (contenedor == null) {
+    if (contenedor == null) return;
 
+    if (responseAPI.status !== 200) {
+        contenedor.innerHTML = "<p class='text-center py-4'>Cargando catálogo del backend...</p>";
         return;
-
     }
-
 
     contenedor.innerHTML = "";
 
@@ -499,10 +481,12 @@ function cargarCarrito() {
             buscarProducto(item.id);
 
 
-        if (prod == null) {
-
+        if (prod == null || prod.available === false) {
+            mostrarAviso(
+                "Uno o más productos del carrito ya no están disponibles. Actualiza tu selección.",
+                "warning"
+            );
             return;
-
         }
 
 

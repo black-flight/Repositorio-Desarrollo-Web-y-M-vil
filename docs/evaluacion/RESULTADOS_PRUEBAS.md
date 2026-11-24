@@ -1,3 +1,5 @@
+> **AVISO HISTÓRICO:** registro/protocolo previo al ZIP simplificado; no prueba ejecución de este nuevo código. Conservar datos originales y agregar nuevos RUN aparte.
+
 # Registro de pruebas funcionales - Tokyo Noodles
 
 Fecha de ejecucion: 2026-11-09 23:01:08

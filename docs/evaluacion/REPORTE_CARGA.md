@@ -1,3 +1,5 @@
+> **AVISO HISTÓRICO:** registro/protocolo previo al ZIP simplificado; no prueba ejecución de este nuevo código. Conservar datos originales y agregar nuevos RUN aparte.
+
 # Reporte de rendimiento - Tokyo Noodles
 
 - **Fecha y hora local:** 2026-11-09 20:26:22 -0300

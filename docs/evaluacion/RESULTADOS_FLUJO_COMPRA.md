@@ -1,3 +1,5 @@
+> **AVISO HISTÓRICO:** registro/protocolo previo al ZIP simplificado; no prueba ejecución de este nuevo código. Conservar datos originales y agregar nuevos RUN aparte.
+
 # Comprobaciones de pedidos, pagos y anulaciones - Tokyo Noodles
 
 Fecha local: 2026-11-09 22:59:42

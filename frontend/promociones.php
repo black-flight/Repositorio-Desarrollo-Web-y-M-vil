@@ -32,12 +32,13 @@
         src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js">
     </script>
 
+    <script src="api.js"></script>
     <script src="productos.js"></script>
 
 </head>
 
 
-<body onload="actualizarContadorCarrito();">
+<body onload="cargarCatalogo(); actualizarContadorCarrito();">
 
 
 <nav class="navbar navbar-expand-md navbar-dark tn-navbar">
@@ -149,7 +150,7 @@
 
     </div>
 
-</nav>
+</nav><div class="container d-flex gap-3 justify-content-center flex-wrap py-2" aria-label="Accesos de cuenta"><a href="registro.php">Registro</a><a href="mi-cuenta.php">Mi perfil</a><a href="mis-pedidos.php">Mis pedidos</a><a href="gestion.php">Gestión</a></div>
 
 
 <div
@@ -236,8 +237,9 @@
                         type="button"
                         class="btn btn-dorado"
                         onclick="agregarProducto('9')"
+                        aria-label="Agregar promocion al carrito"
                     >
-                        +
+                        Agregar
                     </button>
 
                 </div>
@@ -308,8 +310,9 @@
                         type="button"
                         class="btn btn-dorado"
                         onclick="agregarProducto('10')"
+                        aria-label="Agregar promocion al carrito"
                     >
-                        +
+                        Agregar
                     </button>
 
                 </div>

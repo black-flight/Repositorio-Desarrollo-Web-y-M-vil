@@ -5,6 +5,19 @@ const { parse } = require('graphql');
 
 const app = express();
 
+app.use((req, res, next) => {
+    const recibido = req.header('X-Operacion') || '';
+    const requestId = /^[A-Za-z0-9._:-]{8,80}$/.test(recibido)
+        ? recibido
+        : crypto.randomUUID();
+    req.requestId = requestId;
+    res.setHeader('X-Operacion', requestId);
+    res.on('finish', () => {
+        console.log(`operacion_id=${requestId} service=graphql-gateway method=${req.method} path=${req.path} status=${res.statusCode}`);
+    });
+    next();
+});
+
 const GRAPHQL_GATEWAY_SECRET = process.env.GRAPHQL_GATEWAY_SECRET;
 const INTERNAL_GATEWAY_SECRET = process.env.INTERNAL_GATEWAY_SECRET;
 const ORDERS_URL = process.env.ORDERS_URL || 'http://127.0.0.1:9002';
@@ -46,16 +59,16 @@ function comparar(a, b) {
         crypto.timingSafeEqual(primero, segundo);
 }
 
-async function consultar(url, headers) {
+async function consultar(url, headers, requestId) {
     return fetch(url, {
-        headers,
+        headers: { ...headers, 'X-Operacion': requestId || '' },
         signal: AbortSignal.timeout(4000)
     });
 }
 
 const resolvers = {
     Query: {
-        async resumenPedido(_, { id }, { identidad }) {
+        async resumenPedido(_, { id }, { identidad, requestId }) {
             const headers = {
                 'X-Gateway-Secret': INTERNAL_GATEWAY_SECRET,
                 'X-Authenticated-Client': identidad.id,
@@ -67,7 +80,8 @@ const resolvers = {
             try {
                 respuestaPedido = await consultar(
                     `${ORDERS_URL}/orders/${encodeURIComponent(id)}`,
-                    headers
+                    headers,
+                    requestId
                 );
             } catch {
                 throw new Error('Orders no disponible');
@@ -92,7 +106,8 @@ const resolvers = {
             try {
                 const respuestaCatalogo = await consultar(
                     `${INVENTORY_URL}/products`,
-                    headers
+                    headers,
+                    requestId
                 );
 
                 if (!respuestaCatalogo.ok) {
@@ -242,7 +257,8 @@ async function iniciar() {
         resolvers,
         introspection: false,
         context: ({ req }) => ({
-            identidad: req.identidad
+            identidad: req.identidad,
+            requestId: req.requestId
         })
     });
 
@@ -255,7 +271,7 @@ async function iniciar() {
         bodyParserConfig: false
     });
 
-    app.listen(8090, '127.0.0.1', () => {
+    app.listen(8090, '0.0.0.0', () => {
         console.log('GraphQL privado iniciado en 8090');
     });
 }

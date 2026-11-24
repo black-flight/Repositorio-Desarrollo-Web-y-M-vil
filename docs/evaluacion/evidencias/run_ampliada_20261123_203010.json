@@ -1,0 +1,280 @@
+{
+  "evaluacion": "E3 ampliada",
+  "run_id": "33a93c97-eb49-4181-9e0e-1e574dd12156",
+  "fecha_utc": "2026-11-23T23:30:10.252631+00:00",
+  "tipo": "HTTP real contra servicios iniciados, no sustituye E2E desde navegador",
+  "version": "Adjuntar commit o hash de ZIP al registro de la ejecución",
+  "resultados": [
+    {
+      "id": "P15",
+      "descripcion": "Alta Auth + perfil Clients",
+      "estado": "APROBADA",
+      "esperado_http": [
+        201
+      ],
+      "observado_http": 201,
+      "operacion_id": "caec590c-ba4b-439b-ba7b-c870adab36ad",
+      "observacion": ""
+    },
+    {
+      "id": "P16",
+      "descripcion": "Login del nuevo usuario",
+      "estado": "APROBADA",
+      "esperado_http": [
+        200
+      ],
+      "observado_http": 200,
+      "operacion_id": "adc01d5a-9672-499c-9923-f7c77b5469af",
+      "observacion": ""
+    },
+    {
+      "id": "P17",
+      "descripcion": "Perfil persistente propio",
+      "estado": "APROBADA",
+      "esperado_http": [
+        200
+      ],
+      "observado_http": 200,
+      "operacion_id": "5d317e24-18bc-4228-bf8f-c3a2e96e3bf3",
+      "observacion": "id_coincide=True"
+    },
+    {
+      "id": "P18",
+      "descripcion": "Perfil sin sesión rechazado",
+      "estado": "APROBADA",
+      "esperado_http": [
+        401
+      ],
+      "observado_http": 401,
+      "operacion_id": "e6ef5f17-28c9-45b2-a4f7-e58acabd41e3",
+      "observacion": ""
+    },
+    {
+      "id": "P19",
+      "descripcion": "Cliente no puede administrar estados",
+      "estado": "APROBADA",
+      "esperado_http": [
+        403
+      ],
+      "observado_http": 403,
+      "operacion_id": "358587d1-15f0-4e6b-8e45-5beb685f42f6",
+      "observacion": ""
+    },
+    {
+      "id": "P20",
+      "descripcion": "Creación de pedido en Orders",
+      "estado": "APROBADA",
+      "esperado_http": [
+        201
+      ],
+      "observado_http": 201,
+      "operacion_id": "b45aaa99-773b-49db-9680-9bc7414b2695",
+      "observacion": ""
+    },
+    {
+      "id": "P21",
+      "descripcion": "Código de compra en Mongo (reintento)",
+      "estado": "APROBADA",
+      "esperado_http": [
+        200
+      ],
+      "observado_http": 200,
+      "operacion_id": "579dc03c-30d9-4566-8570-8725980250a5",
+      "observacion": "mismo_id=True"
+    },
+    {
+      "id": "P22",
+      "descripcion": "Código de compra rechaza contenido distinto",
+      "estado": "APROBADA",
+      "esperado_http": [
+        409
+      ],
+      "observado_http": 409,
+      "operacion_id": "09369a67-4056-43fa-9a12-580f2bb2c479",
+      "observacion": ""
+    },
+    {
+      "id": "P23",
+      "descripcion": "Lectura independiente de persistencia",
+      "estado": "APROBADA",
+      "esperado_http": [
+        200
+      ],
+      "observado_http": 200,
+      "operacion_id": "68759830-aa18-405a-99bd-8c1fa48a5265",
+      "observacion": ""
+    },
+    {
+      "id": "P24",
+      "descripcion": "Solicitud de pago vinculada a Orders",
+      "estado": "APROBADA",
+      "esperado_http": [
+        201
+      ],
+      "observado_http": 201,
+      "operacion_id": "01ab2a7b-0368-4669-a5c0-fa9db50b2b51",
+      "observacion": ""
+    },
+    {
+      "id": "P25",
+      "descripcion": "Unicidad de pago por pedido",
+      "estado": "APROBADA",
+      "esperado_http": [
+        200,
+        201
+      ],
+      "observado_http": 201,
+      "operacion_id": "78e3cde8-c395-4510-a1e2-1c5fd1e24482",
+      "observacion": "mismo_id=True"
+    },
+    {
+      "id": "P26",
+      "descripcion": "Usuario no confirma pagos de prueba",
+      "estado": "APROBADA",
+      "esperado_http": [
+        403
+      ],
+      "observado_http": 403,
+      "operacion_id": "6849da62-6d45-41d6-95fd-fa9b0255afd0",
+      "observacion": ""
+    },
+    {
+      "id": "P27",
+      "descripcion": "Fuera de radio 3 km rechazado",
+      "estado": "APROBADA",
+      "esperado_http": [
+        422
+      ],
+      "observado_http": 422,
+      "operacion_id": "4cb6d7b4-c9de-4203-a6c9-094b82491a65",
+      "observacion": ""
+    },
+    {
+      "id": "P28",
+      "descripcion": "Dentro de radio 3 km crea pedido",
+      "estado": "APROBADA",
+      "esperado_http": [
+        201
+      ],
+      "observado_http": 201,
+      "operacion_id": "f36355ea-f9ba-41f0-9dbb-9b552a95aee5",
+      "observacion": ""
+    },
+    {
+      "id": "P39",
+      "descripcion": "Compras concurrentes un solo documento",
+      "estado": "APROBADA",
+      "esperado_http": [
+        200,
+        201
+      ],
+      "observado_http": 201,
+      "operacion_id": "5df21bbb-a2ed-4e2e-b6a6-8e31e2df28f6",
+      "observacion": "concurrent_status=[200, 201] mismo_id=True documentos=1"
+    },
+    {
+      "id": "P29",
+      "descripcion": "Lectura GraphQL Orders + Inventory",
+      "estado": "APROBADA",
+      "esperado_http": [
+        200
+      ],
+      "observado_http": 200,
+      "operacion_id": "2260afc2-d7b8-46a9-a916-f311566ff3ea",
+      "observacion": ""
+    },
+    {
+      "id": "P30",
+      "descripcion": "Login administrativo",
+      "estado": "APROBADA",
+      "esperado_http": [
+        200
+      ],
+      "observado_http": 200,
+      "operacion_id": "919cc55a-572b-4213-9287-83f4ddea7bb0",
+      "observacion": ""
+    },
+    {
+      "id": "P31",
+      "descripcion": "Confirmación simulada de pago protegida",
+      "estado": "APROBADA",
+      "esperado_http": [
+        200
+      ],
+      "observado_http": 200,
+      "operacion_id": "d9dfb323-2563-43fc-949a-1a831c6bf70a",
+      "observacion": ""
+    },
+    {
+      "id": "P32",
+      "descripcion": "Persistencia del estado pagado",
+      "estado": "APROBADA",
+      "esperado_http": [
+        200
+      ],
+      "observado_http": 200,
+      "operacion_id": "4d987e90-eb28-48cf-869f-debd219c7a93",
+      "observacion": "estado=pagado"
+    },
+    {
+      "id": "P33",
+      "descripcion": "Comprobante comercial no tributario",
+      "estado": "APROBADA",
+      "esperado_http": [
+        200
+      ],
+      "observado_http": 200,
+      "operacion_id": "8c1062d8-4b5c-4726-96af-90219bd22d81",
+      "observacion": "tipo=COMPROBANTE_COMERCIAL_NO_TRIBUTARIO"
+    },
+    {
+      "id": "P34",
+      "descripcion": "Reporte de ventas de administrador",
+      "estado": "APROBADA",
+      "esperado_http": [
+        200
+      ],
+      "observado_http": 200,
+      "operacion_id": "282e1315-2c2c-4efc-9976-b7d7c3c4d3a4",
+      "observacion": ""
+    },
+    {
+      "id": "P35",
+      "descripcion": "Estado del publicador ActiveMQ",
+      "estado": "APROBADA",
+      "esperado_http": [
+        200
+      ],
+      "observado_http": 200,
+      "operacion_id": "58d115dc-4306-4c5f-b6c5-41dbe52f88c1",
+      "observacion": ""
+    },
+    {
+      "id": "P36",
+      "descripcion": "Logout cuenta nueva",
+      "estado": "APROBADA",
+      "esperado_http": [
+        200
+      ],
+      "observado_http": 200,
+      "operacion_id": "7cfd1e5c-a31d-4c0f-bb51-ea1c0e3200bb",
+      "observacion": ""
+    },
+    {
+      "id": "P37",
+      "descripcion": "Revocación efectiva",
+      "estado": "APROBADA",
+      "esperado_http": [
+        401
+      ],
+      "observado_http": 401,
+      "operacion_id": "14764bd5-1a1b-4906-957a-d19bb18315da",
+      "observacion": ""
+    }
+  ],
+  "conteos": {
+    "APROBADA": 24,
+    "FALLIDA": 0,
+    "BLOQUEADA": 0
+  }
+}

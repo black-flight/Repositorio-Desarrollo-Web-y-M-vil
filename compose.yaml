@@ -1,0 +1,179 @@
+
+# EXCLUSIVAMENTE desarrollo local y demostración académica, NO producción.
+name: tokyo-noodles-e3
+
+x-python: &python
+  build:
+    context: .
+    dockerfile: Dockerfile.python
+  env_file: .env
+  environment: &python-env
+    MONGO_URL: mongodb://mongo:27017
+    PYTHONPATH: /app
+    INTERNAL_GATEWAY_SECRET: ${INTERNAL_GATEWAY_SECRET:?Ejecutar init_local_env.py}
+    AUTH_INTROSPECTION_SECRET: ${AUTH_INTROSPECTION_SECRET:?}
+    GRAPHQL_GATEWAY_SECRET: ${GRAPHQL_GATEWAY_SECRET:?}
+    PAYMENTS_TO_ORDERS_SECRET: ${PAYMENTS_TO_ORDERS_SECRET:?}
+    PAYMENT_TEST_SECRET: ${PAYMENT_TEST_SECRET:?}
+    PAYMENT_TEST_MODE: ${PAYMENT_TEST_MODE:-1}
+    AUTH_SERVICE_URL: http://auth:9003
+    INVENTORY_URL: http://inventory:9001
+    ORDERS_URL: http://orders:9002
+    CLIENTS_URL: http://clients:9004
+    PAYMENTS_URL: http://payments:9005
+    GRAPHQL_URL: http://graphql:8090
+    DELIVERY_STORE_LAT: ${DELIVERY_STORE_LAT:?}
+    DELIVERY_STORE_LON: ${DELIVERY_STORE_LON:?}
+    DELIVERY_RADIUS_KM: ${DELIVERY_RADIUS_KM:-3}
+    EMAIL_REQUIRE_VERIFIED: ${EMAIL_REQUIRE_VERIFIED:-0}
+    ACTIVEMQ_HOST: activemq
+    ACTIVEMQ_PORT: '61613'
+    ACTIVEMQ_USER: ${ACTIVEMQ_USER:-admin}
+    ACTIVEMQ_PASSWORD: ${ACTIVEMQ_PASSWORD:-admin}
+  restart: unless-stopped
+
+services:
+  mongo:
+    image: mongo:7
+    volumes: [mongo_data:/data/db]
+    healthcheck:
+      test: ["CMD", "mongosh", "--quiet", "--eval", "db.adminCommand({ping:1}).ok"]
+      interval: 6s
+      timeout: 5s
+      retries: 20
+
+  vault:
+    image: hashicorp/vault:1.20
+    cap_add: [IPC_LOCK]
+    environment:
+      VAULT_DEV_ROOT_TOKEN_ID: ${VAULT_DEV_ROOT_TOKEN_ID:?}
+      VAULT_DEV_LISTEN_ADDRESS: 0.0.0.0:8200
+    command: server -dev
+    ports: ["127.0.0.1:8200:8200"]
+
+  vault-init:
+    image: hashicorp/vault:1.20
+    depends_on:
+      - vault
+    env_file: .env
+    environment:
+      VAULT_ADDR: http://vault:8200
+      VAULT_TOKEN: ${VAULT_DEV_ROOT_TOKEN_ID:?}
+    entrypoint: ["/bin/sh", "-ec"]
+    command:
+      - |
+        for i in 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20; do
+          if vault status >/dev/null 2>&1; then
+            break
+          fi
+          sleep 2
+        done
+
+        vault kv put secret/gateway \
+          backend_shared_secret="$$INTERNAL_GATEWAY_SECRET" \
+          auth_introspection_secret="$$AUTH_INTROSPECTION_SECRET" \
+          graphql_shared_secret="$$GRAPHQL_GATEWAY_SECRET" \
+          payment_test_secret="$$PAYMENT_TEST_SECRET" >/dev/null
+
+        echo 'Vault inicializado correctamente'
+
+  inventory:
+    <<: *python
+    command: uvicorn backend.inventory.backend_api:app --host 0.0.0.0 --port 9001
+    depends_on:
+      mongo: {condition: service_healthy}
+
+  clients:
+    <<: *python
+    environment:
+      <<: *python-env
+      DEMO_SEED_PROFILES: '1'
+      EMAIL_API_URL: ${EMAIL_API_URL:-}
+      EMAIL_API_KEY: ${EMAIL_API_KEY:-}
+      EMAIL_FROM: ${EMAIL_FROM:-noreply@tokyonoodles.test}
+      EMAIL_DEMO_MODE: ${EMAIL_DEMO_MODE:-1}
+      EMAIL_ALLOW_HTTP_LOCAL: ${EMAIL_ALLOW_HTTP_LOCAL:-0}
+    command: uvicorn backend.clients.backend_api:app --host 0.0.0.0 --port 9004
+    depends_on:
+      mongo: {condition: service_healthy}
+
+  orders:
+    <<: *python
+    command: uvicorn backend.orders.backend_api:app --host 0.0.0.0 --port 9002
+    depends_on:
+      mongo: {condition: service_healthy}
+      activemq: {condition: service_started}
+
+  payments:
+    <<: *python
+    environment:
+      <<: *python-env
+      EMAIL_API_URL: ${EMAIL_API_URL:-}
+      EMAIL_API_KEY: ${EMAIL_API_KEY:-}
+      EMAIL_FROM: ${EMAIL_FROM:-noreply@tokyonoodles.test}
+      EMAIL_DEMO_MODE: ${EMAIL_DEMO_MODE:-1}
+      EMAIL_ALLOW_HTTP_LOCAL: ${EMAIL_ALLOW_HTTP_LOCAL:-0}
+    command: uvicorn backend.payments.backend_api:app --host 0.0.0.0 --port 9005
+    depends_on:
+      mongo: {condition: service_healthy}
+
+  auth:
+    <<: *python
+    command: uvicorn auth_service:app --app-dir backend/auth-service --host 0.0.0.0 --port 9003
+    depends_on:
+      mongo: {condition: service_healthy}
+
+  graphql:
+    build:
+      context: .
+      dockerfile: Dockerfile.graphql
+    environment:
+      GRAPHQL_GATEWAY_SECRET: ${GRAPHQL_GATEWAY_SECRET:?}
+      INTERNAL_GATEWAY_SECRET: ${INTERNAL_GATEWAY_SECRET:?}
+      ORDERS_URL: http://orders:9002
+      INVENTORY_URL: http://inventory:9001
+    depends_on: [inventory, orders]
+
+  gateway:
+    <<: *python
+    environment:
+      <<: *python-env
+      VAULT_ADDR: http://vault:8200
+      VAULT_TOKEN: ${VAULT_DEV_ROOT_TOKEN_ID:?}
+      FRONTEND_ORIGINS: ${FRONTEND_ORIGINS:?}
+    command: uvicorn gateway:app --app-dir backend/api-gateway --host 0.0.0.0 --port 8000
+    ports: ["127.0.0.1:8000:8000"]
+    depends_on:
+      vault-init: {condition: service_completed_successfully}
+      auth: {condition: service_started}
+      inventory: {condition: service_started}
+      clients: {condition: service_started}
+      orders: {condition: service_started}
+      payments: {condition: service_started}
+      graphql: {condition: service_started}
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    ports: ["127.0.0.1:8080:80"]
+    depends_on:
+      - gateway
+
+  activemq:
+    image: apache/activemq-classic:6.1.7
+    ports: ["127.0.0.1:8161:8161", "127.0.0.1:61613:61613"]
+
+  events-consumer:
+    <<: *python
+    environment:
+      <<: *python-env
+      ACTIVEMQ_HOST: activemq
+      ACTIVEMQ_PORT: '61613'
+      ACTIVEMQ_USER: ${ACTIVEMQ_USER:-admin}
+      ACTIVEMQ_PASSWORD: ${ACTIVEMQ_PASSWORD:-admin}
+    command: python -m backend.mensajeria.consumidor
+    depends_on: [mongo, activemq]
+
+volumes:
+  mongo_data:

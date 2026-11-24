@@ -1,0 +1,15 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Verificar correo — Tokyo Noodles</title><link rel="icon" href="img/favicon.png"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"><link rel="stylesheet" href="estilos.css"><style>.tn-panel{background:#fffdf5;color:#27231c;border:1px solid #d8c49a;border-radius:16px;padding:24px;margin:15px 0}.tn-panel input,.tn-panel select{color:#222}.tn-panel .form-label{font-weight:600}.tn-panel h2{font-size:1.3rem}.tn-item{background:#fff;border:1px solid #d7c9ac;border-radius:9px;padding:12px;margin:8px 0}.tn-btn{background:#6a251c;color:#fff;border:0;border-radius:8px;padding:10px 16px}.tn-btn:hover{background:#481610;color:white}.tn-pill{font-size:.85rem;background:#eee2c4;border-radius:25px;padding:3px 10px}.tn-status{white-space:pre-wrap;font-size:.9rem}.tn-status:empty{display:none}body{min-height:100vh}.nowrap{white-space:nowrap}@media print{nav,.no-print{display:none!important}.tn-panel{border:none}body{background:white!important}}</style><script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script><script defer src="api.js"></script><script defer src="paneles.js"></script></head><body><nav class="navbar navbar-dark navbar-expand-md tn-navbar px-3"><a class="navbar-brand d-flex align-items-center gap-2" href="index.php"><img src="img/logo.png" alt="Tokyo Noodles" height="56">Tokyo Noodles</a><button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navTN"><span class="navbar-toggler-icon"></span></button><div class="collapse navbar-collapse" id="navTN"><div class="navbar-nav ms-auto"><a class="nav-link" href="menu.php">Menú</a><a class="nav-link" href="carrito.php">Carrito</a><a class="nav-link" href="login.php">Acceso</a><a class="nav-link" href="mis-pedidos.php">Mis pedidos</a><a class="nav-link" href="mi-cuenta.php">Perfil</a><a class="nav-link" href="gestion.php">Gestión</a></div></div></nav><main class="container py-4">
+<h1 class="titulo-seccion">Verificar correo electrónico</h1>
+<section class="tn-panel">
+<p>Ingresa el código enviado mediante la API REST de correo. Si estás en modo DEMO, no existe envío externo ni verificación real del buzón.</p>
+<p id="correoVerificacionDestino">Cargando perfil autenticado...</p>
+<form id="verificarCorreoForm" class="row g-3">
+<div class="col-md-6"><label class="form-label" for="codigoCorreo">Código de 6 cifras</label>
+<input id="codigoCorreo" class="form-control" name="codigo" inputmode="numeric" maxlength="6" pattern="[0-9]{6}" required></div>
+<div class="col-12"><button class="tn-btn" type="submit">Comprobar código</button>
+<button class="btn btn-outline-primary" id="reenviarCodigo" type="button">Solicitar otro código</button></div>
+</form>
+<div id="verificarCorreoStatus" class="tn-status alert mt-3" aria-live="polite"></div>
+<p><a href="mi-cuenta.php">Volver a mi perfil</a></p>
+</section>
+</main></body></html>
